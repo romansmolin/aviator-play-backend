@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_seo_seo_metas",
+  "info": {
+    "displayName": "Seo Meta",
+    "icon": "code"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "config": {}
+}

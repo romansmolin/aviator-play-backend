@@ -2,17 +2,24 @@
 
 import { casinoMapper } from '../mappers/casino-mappers';
 import { paginate } from './paginate';
-import { findCasinoByUuid, findCasinosByLocale, findAllCasinosByLocale } from '../repositories/casino-repository';
+import { withAffiliateLinks } from '../utils/add-affiliate-links';
+import {
+    findCasinoByUuid,
+    findCasinosByLocale,
+    findAllCasinosByLocale,
+    findCasinoBySlug,
+    findCasinoSeoDataBySlug,
+} from '../repositories/casino-repository';
 
-const getCasinoByUUID = async (uuid: string, locale: string) => {
+const getCasinoByUUID = async (uuid: string, locale: string, fullDomain?: string) => {
     try {
         const data = await findCasinoByUuid(uuid, locale);
 
         console.log('data: ', data.results[0]);
 
-        if (!data) throw new Error('Casino not found');
+        if (!data || data.results.length === 0) throw new Error('Casino not found');
 
-        return {
+        const casino = {
             id: data.results[0].id,
             name: data.results[0].name,
             bonus_title: data.results[0].bonus_title,
@@ -24,16 +31,21 @@ const getCasinoByUUID = async (uuid: string, locale: string) => {
             mainBonus: data.results[0].mainBonus,
             casinoType: data.results[0].casinoType,
             uuid: data.results[0].uuid,
-            allowedCountries: data.results[0]?.allowedCountries || [],
-            allowedCurrencies: data.results[0]?.allowedCurrencies || [],
+            allowedCountries: data.results[0].allowedCountries || [],
+            allowedCurrencies: data.results[0].allowedCurrencies || [],
+            slug: data.results[0].slug,
+            affiliateLink: data.results[0].affiliateLink,
         };
+
+        // Add affiliate link if domain is provided
+        return fullDomain ? withAffiliateLinks(casino, fullDomain) : casino;
     } catch (error) {
         console.error('Error fetching casino data:', error);
         throw new Error('Failed to fetch casino data');
     }
 };
 
-const getCasinosByType = async (args: any) => {
+const getCasinosByType = async (args: any, fullDomain?: string) => {
     try {
         const casinos = await findCasinosByLocale(args.locale);
         const { page, number, casinoType } = args;
@@ -53,10 +65,14 @@ const getCasinosByType = async (args: any) => {
 
         const { items: casinoItems, totalPages } = paginate(mappedCasinos, page, number);
 
-        return {
+        const response = {
             casinos: casinoItems || [],
             totalPages,
         };
+
+        console.log('casinos: ', casinoItems);
+
+        return fullDomain ? withAffiliateLinks(response, fullDomain) : response;
     } catch (error) {
         console.error('Error fetching casino data:', error);
         return {
@@ -66,19 +82,20 @@ const getCasinosByType = async (args: any) => {
     }
 };
 
-const getAllCasinosWithoutPagination = async (args: any) => {
+const getAllCasinosWithoutPagination = async (args: any, fullDomain?: string) => {
     try {
         const { locale } = args;
 
         const casinos = await findAllCasinosByLocale(locale);
 
-        console.log('casinos: ', casinos);
-
         const mappedCasinos = casinos.results.map((casino: any) => casinoMapper(casino));
 
-        return {
+        const response = {
             casinos: mappedCasinos,
         };
+
+        // Add affiliate links if domain is provided
+        return fullDomain ? withAffiliateLinks(response, fullDomain) : response;
     } catch (error) {
         return {
             casinos: [],
@@ -86,4 +103,51 @@ const getAllCasinosWithoutPagination = async (args: any) => {
     }
 };
 
-export { getCasinoByUUID, getCasinosByType, getAllCasinosWithoutPagination };
+const getCasinosBySlug = async (slug: string, locale: string, fullDomain?: string) => {
+    try {
+        const data = await findCasinoBySlug(slug, locale);
+
+        if (!data || data.results.length === 0) throw new Error('Casino not found');
+
+        const casino = {
+            id: data.results[0].id,
+            name: data.results[0].name,
+            bonus_title: data.results[0].bonus_title,
+            logoUrl: data.results[0].logo[0].url,
+            features: data.results[0].features,
+            rating: data.results[0].rating,
+            review: data.results[0].review,
+            faq: data.results[0].faq?.fact1,
+            mainBonus: data.results[0].mainBonus,
+            casinoType: data.results[0].casinoType,
+            uuid: data.results[0].uuid,
+            allowedCountries: data.results[0].allowedCountries || [],
+            allowedCurrencies: data.results[0].allowedCurrencies || [],
+            slug: data.results[0].slug,
+            affiliateLink: data.results[0].affiliateLink,
+        };
+
+        // Add affiliate link if domain is provided
+        return fullDomain ? withAffiliateLinks(casino, fullDomain) : casino;
+    } catch (error) {
+        console.error('Error fetching casino data:', error);
+        throw new Error('Failed to fetch casino data');
+    }
+};
+
+const getCasinoSeoInfoBySlug = async (slug: string, locale: string) => {
+    try {
+        const data = await findCasinoSeoDataBySlug(locale, slug);
+        if (!data || data.results.length === 0) throw new Error('Casino not found');
+        console.log('data: ', data.results);
+        return {
+            title: data.results[0].seo.title,
+            description: data.results[0].seo.description,
+        };
+    } catch (error) {
+        console.error('Error fetching casino SEO data:', error);
+        throw new Error('Failed to fetch casino data');
+    }
+};
+
+export { getCasinoByUUID, getCasinosByType, getAllCasinosWithoutPagination, getCasinosBySlug, getCasinoSeoInfoBySlug };

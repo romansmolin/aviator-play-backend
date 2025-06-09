@@ -2,8 +2,16 @@
 
 export const findCasinoByUuid = async (uuid: string, locale: string) => {
     return await strapi.service('api::casino.casino').find({
-        populate: ['logo', 'faq.fact1', 'mainBonus', 'mainBonus.bonus'],
+        populate: ['logo', 'faq.fact1', 'mainBonus', 'mainBonus.bonus', 'affiliateLink'],
         filters: { uuid },
+        locale,
+    });
+};
+
+export const findCasinoBySlug = async (slug: string, locale: string) => {
+    return await strapi.service('api::casino.casino').find({
+        populate: ['logo', 'faq.fact1', 'mainBonus', 'mainBonus.bonus', 'affiliateLink'],
+        filters: { slug },
         locale,
     });
 };
@@ -14,7 +22,14 @@ export const findCasinoByUuid = async (uuid: string, locale: string) => {
 
 export const findCasinosByLocale = async (locale: string) => {
     return await strapi.service('api::casino.casino').find({
-        populate: ['logo', 'faq.fact1', 'mainBonus', 'localizations'],
+        populate: ['logo', 'faq.fact1', 'mainBonus', 'localizations', 'affiliateLink'],
+        locale,
+    });
+};
+
+export const findCasinosBySlug = async (locale: string) => {
+    return await strapi.service('api::casino.casino').find({
+        populate: ['logo', 'faq.fact1', 'mainBonus', 'localizations', 'affiliateLink'],
         locale,
     });
 };
@@ -30,6 +45,14 @@ export const findAllCasinosByLocale = async (locale: string) => {
             'faq.fact1',
             'mainBonus',
             'localizations',
+            'affiliateLink',
         ],
+    });
+};
+
+export const findCasinoSeoDataBySlug = async (locale: string, slug: string) => {
+    return await strapi.service('api::casino.casino').find({
+        locale,
+        populate: ['seo'],
     });
 };

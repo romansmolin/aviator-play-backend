@@ -149,6 +149,18 @@ export interface ListCasinoTopList extends Struct.ComponentSchema {
     };
 }
 
+export interface SeoSeoMeta extends Struct.ComponentSchema {
+    collectionName: 'components_seo_seo_metas';
+    info: {
+        displayName: 'Seo Meta';
+        icon: 'code';
+    };
+    attributes: {
+        description: Schema.Attribute.String & Schema.Attribute.Required;
+        title: Schema.Attribute.String & Schema.Attribute.Required;
+    };
+}
+
 declare module '@strapi/strapi' {
     export module Public {
         export interface ComponentSchemas {
@@ -161,6 +173,7 @@ declare module '@strapi/strapi' {
             'faq.faq-item': FaqFaqItem;
             'list.available-promos-list': ListAvailablePromosList;
             'list.casino-top-list': ListCasinoTopList;
+            'seo.seo-meta': SeoSeoMeta;
         }
     }
 }

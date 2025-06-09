@@ -466,7 +466,7 @@ export interface ApiCasinoCasino extends Struct.CollectionTypeSchema {
         };
     };
     attributes: {
-        affiliate_link: Schema.Attribute.Relation<'oneToOne', 'api::affiliate-link.affiliate-link'>;
+        affiliateLink: Schema.Attribute.Relation<'oneToOne', 'api::affiliate-link.affiliate-link'>;
         allowedCountries: Schema.Attribute.JSON &
             Schema.Attribute.Required &
             Schema.Attribute.SetPluginOptions<{
@@ -565,6 +565,20 @@ export interface ApiCasinoCasino extends Struct.CollectionTypeSchema {
             >;
         review: Schema.Attribute.Blocks &
             Schema.Attribute.Required &
+            Schema.Attribute.SetPluginOptions<{
+                i18n: {
+                    localized: true;
+                };
+            }>;
+        seo: Schema.Attribute.Component<'seo.seo-meta', false> &
+            Schema.Attribute.SetPluginOptions<{
+                i18n: {
+                    localized: true;
+                };
+            }>;
+        slug: Schema.Attribute.String &
+            Schema.Attribute.Required &
+            Schema.Attribute.Unique &
             Schema.Attribute.SetPluginOptions<{
                 i18n: {
                     localized: true;

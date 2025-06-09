@@ -148,11 +148,31 @@
       },
       "required": true
     },
-    "affiliate_link": {
+    "affiliateLink": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::affiliate-link.affiliate-link",
       "mappedBy": "casino"
+    },
+    "seo": {
+      "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "seo.seo-meta",
+      "repeatable": false
+    },
+    "slug": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "required": true,
+      "unique": true
     }
   }
 }

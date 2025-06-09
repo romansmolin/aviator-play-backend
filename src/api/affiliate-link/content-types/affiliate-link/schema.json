@@ -52,7 +52,7 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::casino.casino",
-      "inversedBy": "affiliate_link"
+      "inversedBy": "affiliateLink"
     }
   }
 }

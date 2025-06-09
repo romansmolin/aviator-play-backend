@@ -11,6 +11,8 @@ const casinoMapper = casino => {
         mainBonus: casino.mainBonus,
         casinoType: casino.casinoType,
         uuid: casino.uuid,
+        slug: casino.slug,
+        affiliateLink: casino.affiliateLink,
     };
 
     return result;

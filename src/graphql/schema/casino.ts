@@ -15,6 +15,8 @@ export default `
       casinoType: [String]
       allowedCountries: [String]
       allowedCurrencies: [String]
+      slug: String
+      affiliateLink: String
     }
 
     type GetCasinoByType {
@@ -39,6 +41,13 @@ export default `
         mainBonus: MainBonus
         casinoType: [String]
         uuid: String
+        slug: String
+        affiliateLink: String
+    }
+
+    type GetCasinoSeoInfoBySlug {
+      title: String
+      description: String
     }
 
     type MainBonus {
@@ -84,7 +93,10 @@ export default `
 
     extend type Query {
         getCasinoByUUID(uuid: String!, locale: String!): GetCasinoByUUID
+        getCasinoBySlug(slug: String!, locale: String!): GetCasinoByUUID
+
         getCasinosByType(casinoType: String!, locale: String!, page: Int!, number: Int!): GetCasinoByType        
         getAllCasinosWithoutPagination(locale: String!): GetAllCasinosWithoutPagination
+        getCasinoSeoInfoBySlug(locale: String!, slug: String!): GetCasinoSeoInfoBySlug
     }
 `;
