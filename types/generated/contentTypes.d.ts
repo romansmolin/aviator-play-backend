@@ -382,25 +382,29 @@ export interface ApiBonusBonus extends Struct.CollectionTypeSchema {
     };
     attributes: {
         affiliate_link: Schema.Attribute.Relation<'oneToOne', 'api::affiliate-link.affiliate-link'>;
-        bonus_info: Schema.Attribute.Component<'bonus.bonus-info', false> &
-            Schema.Attribute.SetPluginOptions<{
-                i18n: {
-                    localized: true;
-                };
-            }>;
-        bonus_subtitle: Schema.Attribute.String &
+        bonusInfo: Schema.Attribute.Component<'bonus.bonus-info', false> &
+            Schema.Attribute.Required &
             Schema.Attribute.SetPluginOptions<{
                 i18n: {
                     localized: true;
                 };
             }>;
         bonusOverview: Schema.Attribute.Blocks &
+            Schema.Attribute.Required &
+            Schema.Attribute.SetPluginOptions<{
+                i18n: {
+                    localized: true;
+                };
+            }>;
+        bonusSubtitle: Schema.Attribute.String &
+            Schema.Attribute.Required &
             Schema.Attribute.SetPluginOptions<{
                 i18n: {
                     localized: true;
                 };
             }>;
         bonusTitle: Schema.Attribute.String &
+            Schema.Attribute.Required &
             Schema.Attribute.SetPluginOptions<{
                 i18n: {
                     localized: true;
@@ -425,12 +429,14 @@ export interface ApiBonusBonus extends Struct.CollectionTypeSchema {
         locale: Schema.Attribute.String;
         localizations: Schema.Attribute.Relation<'oneToMany', 'api::bonus.bonus'>;
         logo: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios', true> &
+            Schema.Attribute.Required &
             Schema.Attribute.SetPluginOptions<{
                 i18n: {
                     localized: true;
                 };
             }>;
         name: Schema.Attribute.String &
+            Schema.Attribute.Required &
             Schema.Attribute.SetPluginOptions<{
                 i18n: {
                     localized: true;
@@ -443,6 +449,20 @@ export interface ApiBonusBonus extends Struct.CollectionTypeSchema {
                 };
             }>;
         publishedAt: Schema.Attribute.DateTime;
+        seo: Schema.Attribute.Component<'seo.seo-meta', false> &
+            Schema.Attribute.SetPluginOptions<{
+                i18n: {
+                    localized: true;
+                };
+            }>;
+        slug: Schema.Attribute.String &
+            Schema.Attribute.Required &
+            Schema.Attribute.Unique &
+            Schema.Attribute.SetPluginOptions<{
+                i18n: {
+                    localized: true;
+                };
+            }>;
         updatedAt: Schema.Attribute.DateTime;
         updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
         uuid: Schema.Attribute.UID & Schema.Attribute.CustomField<'plugin::strapi-advanced-uuid.uuid'>;

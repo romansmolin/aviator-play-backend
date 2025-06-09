@@ -26,6 +26,7 @@ const resolversConfig = {
     'Query.getAllCasinosWithoutPagination': {
         auth: false,
     },
+    
     'Query.getCasinoSeoInfoBySlug': {
         auth: false,
     },

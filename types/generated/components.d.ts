@@ -8,10 +8,12 @@ export interface BonusBonusInfo extends Struct.ComponentSchema {
         icon: 'feather';
     };
     attributes: {
-        availableFor: Schema.Attribute.JSON;
-        bonus_status: Schema.Attribute.JSON &
+        availableFor: Schema.Attribute.JSON & Schema.Attribute.Required;
+        bonusStatus: Schema.Attribute.JSON &
+            Schema.Attribute.Required &
             Schema.Attribute.CustomField<'plugin::multi-select.multi-select', ['Active', 'Innactive']>;
-        bonus_type: Schema.Attribute.JSON &
+        bonusType: Schema.Attribute.JSON &
+            Schema.Attribute.Required &
             Schema.Attribute.CustomField<
                 'plugin::multi-select.multi-select',
                 [
@@ -28,7 +30,7 @@ export interface BonusBonusInfo extends Struct.ComponentSchema {
                     '',
                 ]
             >;
-        release_date: Schema.Attribute.Date;
+        releaseDate: Schema.Attribute.Date & Schema.Attribute.Required;
     };
 }
 

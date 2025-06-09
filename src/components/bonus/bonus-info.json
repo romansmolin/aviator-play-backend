@@ -7,11 +7,13 @@
   },
   "options": {},
   "attributes": {
-    "release_date": {
-      "type": "date"
+    "releaseDate": {
+      "type": "date",
+      "required": true
     },
-    "bonus_type": {
+    "bonusType": {
       "type": "customField",
+      "customField": "plugin::multi-select.multi-select",
       "options": [
         "No Deposit Bonus:no-deposit-bonuses",
         "Welcome Bonus:welcome-bonuses",
@@ -25,18 +27,20 @@
         "Free Spins Bonus:free-spins-bonuses",
         ""
       ],
-      "customField": "plugin::multi-select.multi-select"
+      "required": true
     },
-    "bonus_status": {
+    "bonusStatus": {
       "type": "customField",
+      "customField": "plugin::multi-select.multi-select",
       "options": [
         "Active",
         "Innactive"
       ],
-      "customField": "plugin::multi-select.multi-select"
+      "required": true
     },
     "availableFor": {
-      "type": "json"
+      "type": "json",
+      "required": true
     }
   }
 }

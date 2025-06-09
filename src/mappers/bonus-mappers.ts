@@ -1,23 +1,23 @@
-const bonusMapper = (bonus) => ({
-  casinoName: bonus.casinoName,
-  casinoUuid: bonus.casinos[0]?.uuid,
-  casinoLogo: bonus.logo[0]?.url,
-  bonusSubtitle: bonus.bonus_subtitle,
-  bonusTitle: bonus.bonusTitle,
-  info: {
-    releaseDate: bonus.bonus_info?.release_date,
-    availableFor: bonus.bonus_info?.availableFor,
-    bonusType: bonus.bonus_info?.bonus_type,
-    bonusStatus: bonus.bonus_info?.bonus_status[0],
-  },
-  uuid: bonus?.uuid,
-  primaryBonusType: bonus?.primaryBonusType,
+const bonusMapper = bonus => ({
+    casinoName: bonus.casinoName,
+    casinoUuid: bonus.casinos[0]?.uuid,
+    casinoLogo: bonus.logo[0]?.url,
+    bonusSubtitle: bonus.bonusSubtitle,
+    bonusTitle: bonus.bonusTitle,
+    info: {
+        releaseDate: bonus.bonusInfo?.releaseDate,
+        availableFor: bonus.bonusInfo?.availableFor,
+        bonusType: bonus.bonusInfo?.bonusType,
+        bonusStatus: bonus.bonusInfo?.bonusStatus[0],
+    },
+    uuid: bonus?.uuid,
+    primaryBonusType: bonus?.primaryBonusType,
 });
 
-const bonusMapperWithExtras = (bonus) => ({
-  ...bonusMapper(bonus),
-  faqInfo: bonus.faq?.fact1,
-  bonusReview: bonus.bonusOverview,
+const bonusMapperWithExtras = bonus => ({
+    ...bonusMapper(bonus),
+    faqInfo: bonus.faq?.fact1,
+    bonusReview: bonus?.bonusOverview,
 });
 
 export { bonusMapper, bonusMapperWithExtras };
