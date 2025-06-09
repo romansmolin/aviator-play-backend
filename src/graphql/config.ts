@@ -12,6 +12,12 @@ const resolversConfig = {
     'Query.getAllBonusesWithoutPagination': {
         auth: false,
     },
+    'Query.getBonusBySlug': {
+        auth: false,
+    },
+    'Query.getBonusSeoInfoBySlug': {
+        auth: false,
+    },
 
     // Casino resolvers
     'Query.getCasinoByUUID': {
@@ -26,7 +32,7 @@ const resolversConfig = {
     'Query.getAllCasinosWithoutPagination': {
         auth: false,
     },
-    
+
     'Query.getCasinoSeoInfoBySlug': {
         auth: false,
     },

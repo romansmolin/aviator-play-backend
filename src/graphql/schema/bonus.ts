@@ -17,6 +17,15 @@ export default `
         bonuses: [CustomBonus]
     }
 
+    type GetBonusBySlug {
+        bonus: CustomBonus
+    }
+
+    type GetBonusSeoInfoBySlug {
+        title: String
+        description: String
+    }
+
     type CustomBonus {
         casinoName: String,
         casinoUuid: String
@@ -66,5 +75,7 @@ export default `
         getBonusesByType(page: Int!, number: Int!, type: String!, locale: String!): GetBonusesByType
         getBonusById(uuid: String!, locale: String!): GetBonusById
         getAllBonusesWithoutPagination(locale: String!): GetAllBonusesWithoutPagination
+        getBonusBySlug(slug: String!, locale: String!): GetBonusBySlug
+        getBonusSeoInfoBySlug(slug: String!, locale: String!): GetBonusSeoInfoBySlug
     }
 `;

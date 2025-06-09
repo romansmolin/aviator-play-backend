@@ -1,10 +1,10 @@
-'use strict';
-
 import {
     getAllBonuses,
     getBonusesByType,
     getBonusById,
     getAllBonusesWithoutPagination,
+    getBonusBySlug,
+    getBonusSeoInfoBySlug,
 } from '../../services/bonus-service';
 
 export default {
@@ -28,6 +28,18 @@ export default {
         getAllBonusesWithoutPagination: {
             resolve: async (parent: any, args: any) => {
                 return getAllBonusesWithoutPagination(args);
+            },
+        },
+        getBonusBySlug: {
+            resolve: async (parent: any, args: any) => {
+                const { slug, locale } = args;
+                return getBonusBySlug(slug, locale);
+            },
+        },
+        getBonusSeoInfoBySlug: {
+            resolve: async (parent: any, args: any) => {
+                const { slug, locale } = args;
+                return getBonusSeoInfoBySlug(slug, locale);
             },
         },
     },

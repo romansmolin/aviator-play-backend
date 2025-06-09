@@ -5,6 +5,8 @@ import {
     findAllBonusesByLocale,
     findBonusesByTypeAndLocale,
     findBonusByUuid,
+    findBonusBySlug,
+    findBonusSeoDataBySlug,
 } from '../repositories/bonus-repository';
 
 const getAllBonuses = async (args: any) => {
@@ -87,4 +89,44 @@ const getBonusById = async (uuid: string, locale: string) => {
     }
 };
 
-export { getAllBonuses, getBonusesByType, getBonusById, getAllBonusesWithoutPagination };
+const getBonusBySlug = async (slug: string, locale: string) => {
+    try {
+        const data = await findBonusBySlug(slug, locale);
+
+        if (!data || data.results.length === 0) throw new Error('Bonus not found');
+
+        const bonusData = data.results[0];
+        const bonus = bonusMapperWithExtras(bonusData);
+
+        return {
+            bonus,
+        };
+    } catch (error) {
+        console.error('Error fetching bonus by slug:', error);
+        throw new Error('Failed to fetch bonus data');
+    }
+};
+
+const getBonusSeoInfoBySlug = async (slug: string, locale: string) => {
+    try {
+        const data = await findBonusSeoDataBySlug(locale, slug);
+        if (!data || data.results.length === 0) throw new Error('Bonus not found');
+        console.log('bonus seo data: ', data.results);
+        return {
+            title: data.results[0].seo?.title,
+            description: data.results[0].seo?.description,
+        };
+    } catch (error) {
+        console.error('Error fetching bonus SEO data:', error);
+        throw new Error('Failed to fetch bonus SEO data');
+    }
+};
+
+export {
+    getAllBonuses,
+    getBonusesByType,
+    getBonusById,
+    getAllBonusesWithoutPagination,
+    getBonusBySlug,
+    getBonusSeoInfoBySlug,
+};
