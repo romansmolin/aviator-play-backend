@@ -12,6 +12,7 @@ const bonusMapper = bonus => ({
     },
     uuid: bonus?.uuid,
     primaryBonusType: bonus?.primaryBonusType,
+    slug: bonus?.slug,
 });
 
 const bonusMapperWithExtras = bonus => ({

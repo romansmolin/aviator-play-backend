@@ -1,8 +1,12 @@
-"use strict";
-
 export default `
     type GetPageContentBySlug {
         pageContent: [PageContent]
+    }
+
+    type GetPageSeoBySlug {
+        title: String,
+        description: String
+        keywords: [String]
     }
 
     type PageContent {
@@ -42,6 +46,7 @@ export default `
     }
 
     extend type Query {
-        getPageContentBySlug(slug: String!, locale: String!): GetPageContentBySlug        
+        getPageContentBySlug(slug: String!, locale: String!): GetPageContentBySlug 
+        getPageSeoInfoBySlug(slug: String!, locale: String!):  GetPageSeoBySlug      
     }
 `;

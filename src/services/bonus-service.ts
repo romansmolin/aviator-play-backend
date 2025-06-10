@@ -110,11 +110,13 @@ const getBonusBySlug = async (slug: string, locale: string) => {
 const getBonusSeoInfoBySlug = async (slug: string, locale: string) => {
     try {
         const data = await findBonusSeoDataBySlug(locale, slug);
+
         if (!data || data.results.length === 0) throw new Error('Bonus not found');
-        console.log('bonus seo data: ', data.results);
+
         return {
             title: data.results[0].seo?.title,
             description: data.results[0].seo?.description,
+            keywords: data.results[0].seo?.keywords,
         };
     } catch (error) {
         console.error('Error fetching bonus SEO data:', error);

@@ -119,7 +119,7 @@
         "no-deposit-bonuses"
       ]
     },
-    "affiliate_link": {
+    "affiliateLink": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::affiliate-link.affiliate-link",

@@ -159,6 +159,7 @@ export interface SeoSeoMeta extends Struct.ComponentSchema {
     };
     attributes: {
         description: Schema.Attribute.String & Schema.Attribute.Required;
+        keywords: Schema.Attribute.JSON;
         title: Schema.Attribute.String & Schema.Attribute.Required;
     };
 }

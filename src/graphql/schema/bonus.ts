@@ -24,6 +24,7 @@ export default `
     type GetBonusSeoInfoBySlug {
         title: String
         description: String
+        keywords: [String]
     }
 
     type CustomBonus {
@@ -37,7 +38,7 @@ export default `
         bonusReview: [BonusDetails]
         uuid: String
         primaryBonusType: ENUM_BONUS_PRIMARYBONUSTYPE
-
+        slug: String
     }
     
     type BonusDetails {

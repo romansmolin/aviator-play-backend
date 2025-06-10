@@ -381,7 +381,7 @@ export interface ApiBonusBonus extends Struct.CollectionTypeSchema {
         };
     };
     attributes: {
-        affiliate_link: Schema.Attribute.Relation<'oneToOne', 'api::affiliate-link.affiliate-link'>;
+        affiliateLink: Schema.Attribute.Relation<'oneToOne', 'api::affiliate-link.affiliate-link'>;
         bonusInfo: Schema.Attribute.Component<'bonus.bonus-info', false> &
             Schema.Attribute.Required &
             Schema.Attribute.SetPluginOptions<{
@@ -640,6 +640,12 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         locale: Schema.Attribute.String;
         localizations: Schema.Attribute.Relation<'oneToMany', 'api::page.page'>;
         publishedAt: Schema.Attribute.DateTime;
+        seo: Schema.Attribute.Component<'seo.seo-meta', false> &
+            Schema.Attribute.SetPluginOptions<{
+                i18n: {
+                    localized: true;
+                };
+            }>;
         slug: Schema.Attribute.String &
             Schema.Attribute.Required &
             Schema.Attribute.SetPluginOptions<{

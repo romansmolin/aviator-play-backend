@@ -1,10 +1,8 @@
-"use strict";
-
 export default `
     type GetTopByCountryName {
       id: String
       country: String
-      top_list: [MainTopEntry]
+      topList: [MainTopEntry]
     }
   
     type MainTopEntry {

@@ -48,6 +48,7 @@ export default `
     type GetCasinoSeoInfoBySlug {
       title: String
       description: String
+      keywords: [String]
     }
 
     type MainBonus {

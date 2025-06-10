@@ -46,7 +46,7 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::bonus.bonus",
-      "inversedBy": "affiliate_link"
+      "inversedBy": "affiliateLink"
     },
     "casino": {
       "type": "relation",

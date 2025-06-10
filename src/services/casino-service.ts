@@ -139,10 +139,10 @@ const getCasinoSeoInfoBySlug = async (slug: string, locale: string) => {
     try {
         const data = await findCasinoSeoDataBySlug(locale, slug);
         if (!data || data.results.length === 0) throw new Error('Casino not found');
-        console.log('data: ', data.results);
         return {
             title: data.results[0].seo.title,
             description: data.results[0].seo.description,
+            keywords: data.results[0].seo.keywords,
         };
     } catch (error) {
         console.error('Error fetching casino SEO data:', error);

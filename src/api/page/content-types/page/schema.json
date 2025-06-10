@@ -18,24 +18,34 @@
   "attributes": {
     "slug": {
       "type": "string",
-      "required": true,
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
-      }
+      },
+      "required": true
+    },
+    "seo": {
+      "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "seo.seo-meta",
+      "repeatable": false
     },
     "dynamicContent": {
       "type": "dynamiczone",
-      "components": [
-        "content.content-section",
-        "faq.faq"
-      ],
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
-      }
+      },
+      "components": [
+        "content.content-section",
+        "faq.faq"
+      ]
     }
   }
 }
