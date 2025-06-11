@@ -12,6 +12,18 @@ export interface BonusBonusInfo extends Struct.ComponentSchema {
         bonusStatus: Schema.Attribute.JSON &
             Schema.Attribute.Required &
             Schema.Attribute.CustomField<'plugin::multi-select.multi-select', ['Active', 'Innactive']>;
+        bonusType: Schema.Attribute.Component<'bonus.bonus-type', false>;
+        releaseDate: Schema.Attribute.Date & Schema.Attribute.Required;
+    };
+}
+
+export interface BonusBonusType extends Struct.ComponentSchema {
+    collectionName: 'components_bonus_bonus_types';
+    info: {
+        displayName: 'BonusType';
+        icon: 'apps';
+    };
+    attributes: {
         bonusType: Schema.Attribute.JSON &
             Schema.Attribute.Required &
             Schema.Attribute.CustomField<
@@ -27,10 +39,18 @@ export interface BonusBonusInfo extends Struct.ComponentSchema {
                     '50 Free Spins:50-free-spins-bonuses',
                     '100 Free Spins:100-free-spins-bonuses',
                     'Free Spins Bonus:free-spins-bonuses',
+                    'Free Cash Bonus:free-cash-bonuses',
+                    '0 Wager Bonus:0-wager-bonuses',
                     '',
                 ]
-            >;
-        releaseDate: Schema.Attribute.Date & Schema.Attribute.Required;
+            > &
+            Schema.Attribute.SetMinMax<
+                {
+                    min: 0;
+                },
+                number
+            > &
+            Schema.Attribute.DefaultTo<'[]'>;
     };
 }
 
@@ -86,6 +106,50 @@ export interface CardPromoCard extends Struct.ComponentSchema {
         bonus_subtitle: Schema.Attribute.String;
         bonus_title: Schema.Attribute.String;
         link: Schema.Attribute.String;
+    };
+}
+
+export interface CasinoCasinoType extends Struct.ComponentSchema {
+    collectionName: 'components_casino_casino_types';
+    info: {
+        displayName: 'CasinoType';
+        icon: 'briefcase';
+    };
+    attributes: {
+        casinoType: Schema.Attribute.JSON &
+            Schema.Attribute.Required &
+            Schema.Attribute.CustomField<
+                'plugin::multi-select.multi-select',
+                [
+                    'Online Casino: online-casinos',
+                    '',
+                    'Mobile Casino: mobile-casinos',
+                    '',
+                    'Live Casino: live-casinos',
+                    'New Casino: new-casinos',
+                    'Fast Payout Casino: fast-payout-casinos',
+                    'Crypto Casino: crypto-casinos',
+                    'Pay N Play Casino: pay-n-play-casinos',
+                    'High Roller Casino: high-roller-casinos',
+                    'Low Wagering Casino: low-wagering-casinos',
+                    'Minimum Deposit Casino: minimum-deposit-casinos',
+                    'No Verification Casino: no-verification-casinos',
+                    'Trusted Casino: trusted-casinos',
+                    'Best Casino Sites: best-casino-sites',
+                    'Real Money Casino: real-money-casinos',
+                    'New No Account Casino: new-no-account-casinos',
+                    'Instant Withdrawal Casino: instant-withdrawal-casinos',
+                    'Sportsbook Casinos:sportsbook-casinos',
+                ]
+            > &
+            Schema.Attribute.SetMinMax<
+                {
+                    max: 1;
+                    min: 0;
+                },
+                number
+            > &
+            Schema.Attribute.DefaultTo<'[]'>;
     };
 }
 
@@ -168,9 +232,11 @@ declare module '@strapi/strapi' {
     export module Public {
         export interface ComponentSchemas {
             'bonus.bonus-info': BonusBonusInfo;
+            'bonus.bonus-type': BonusBonusType;
             'bonus.main-bonus-info': BonusMainBonusInfo;
             'card.casino-card': CardCasinoCard;
             'card.promo-card': CardPromoCard;
+            'casino.casino-type': CasinoCasinoType;
             'content.content-section': ContentContentSection;
             'faq.faq': FaqFaq;
             'faq.faq-item': FaqFaqItem;

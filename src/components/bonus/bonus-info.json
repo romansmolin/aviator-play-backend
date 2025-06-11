@@ -11,24 +11,6 @@
       "type": "date",
       "required": true
     },
-    "bonusType": {
-      "type": "customField",
-      "customField": "plugin::multi-select.multi-select",
-      "options": [
-        "No Deposit Bonus:no-deposit-bonuses",
-        "Welcome Bonus:welcome-bonuses",
-        "Cashback Bonus:cashback-bonuses",
-        "Best Of The Month:best-of-the-month",
-        "Real Money Bonuses:real-money-bonuses",
-        "Free Spins Bonuses:free-spins-bonuses",
-        "20 Free Spins:20-free-spins-bonuses",
-        "50 Free Spins:50-free-spins-bonuses",
-        "100 Free Spins:100-free-spins-bonuses",
-        "Free Spins Bonus:free-spins-bonuses",
-        ""
-      ],
-      "required": true
-    },
     "bonusStatus": {
       "type": "customField",
       "customField": "plugin::multi-select.multi-select",
@@ -41,6 +23,11 @@
     "availableFor": {
       "type": "json",
       "required": true
+    },
+    "bonusType": {
+      "type": "component",
+      "component": "bonus.bonus-type",
+      "repeatable": false
     }
   }
 }

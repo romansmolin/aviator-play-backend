@@ -7,7 +7,7 @@ const bonusMapper = bonus => ({
     info: {
         releaseDate: bonus.bonusInfo?.releaseDate,
         availableFor: bonus.bonusInfo?.availableFor,
-        bonusType: bonus.bonusInfo?.bonusType,
+        bonusType: bonus.bonusInfo?.bonusType.bonusType,
         bonusStatus: bonus.bonusInfo?.bonusStatus[0],
     },
     uuid: bonus?.uuid,

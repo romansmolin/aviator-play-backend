@@ -56,3 +56,16 @@ export const findCasinoSeoDataBySlug = async (locale: string, slug: string) => {
         populate: ['seo'],
     });
 };
+
+export const findCasinoCategoryBySlug = async (slug: string, locale?: string) => {
+    const query: any = {
+        filters: { slug },
+        populate: ['casinoCategoryType', 'seo'],
+    };
+
+    if (locale) {
+        query.locale = locale;
+    }
+
+    return await strapi.service('api::casinos-category.casinos-category').find(query);
+};

@@ -1,0 +1,40 @@
+{
+  "collectionName": "components_casino_casino_types",
+  "info": {
+    "displayName": "CasinoType",
+    "icon": "briefcase"
+  },
+  "options": {},
+  "attributes": {
+    "casinoType": {
+      "type": "customField",
+      "customField": "plugin::multi-select.multi-select",
+      "default": "[]",
+      "options": [
+        "Online Casino: online-casinos",
+        "",
+        "Mobile Casino: mobile-casinos",
+        "",
+        "Live Casino: live-casinos",
+        "New Casino: new-casinos",
+        "Fast Payout Casino: fast-payout-casinos",
+        "Crypto Casino: crypto-casinos",
+        "Pay N Play Casino: pay-n-play-casinos",
+        "High Roller Casino: high-roller-casinos",
+        "Low Wagering Casino: low-wagering-casinos",
+        "Minimum Deposit Casino: minimum-deposit-casinos",
+        "No Verification Casino: no-verification-casinos",
+        "Trusted Casino: trusted-casinos",
+        "Best Casino Sites: best-casino-sites",
+        "Real Money Casino: real-money-casinos",
+        "New No Account Casino: new-no-account-casinos",
+        "Instant Withdrawal Casino: instant-withdrawal-casinos",
+        "Sportsbook Casinos:sportsbook-casinos"
+      ],
+      "required": true,
+      "min": 0,
+      "max": 1
+    }
+  },
+  "config": {}
+}

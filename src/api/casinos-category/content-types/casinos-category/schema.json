@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "casinos_categories",
+  "info": {
+    "singularName": "casinos-category",
+    "pluralName": "casinos-categories",
+    "displayName": "Casinos Category"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "slug": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "regex": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "casinoCategoryType": {
+      "type": "component",
+      "component": "casino.casino-type",
+      "repeatable": false,
+      "required": true
+    },
+    "seo": {
+      "type": "component",
+      "component": "seo.seo-meta",
+      "repeatable": false,
+      "required": true
+    }
+  }
+}

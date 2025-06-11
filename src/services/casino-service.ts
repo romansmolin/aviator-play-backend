@@ -9,6 +9,7 @@ import {
     findAllCasinosByLocale,
     findCasinoBySlug,
     findCasinoSeoDataBySlug,
+    findCasinoCategoryBySlug,
 } from '../repositories/casino-repository';
 
 const getCasinoByUUID = async (uuid: string, locale: string, fullDomain?: string) => {
@@ -150,4 +151,30 @@ const getCasinoSeoInfoBySlug = async (slug: string, locale: string) => {
     }
 };
 
-export { getCasinoByUUID, getCasinosByType, getAllCasinosWithoutPagination, getCasinosBySlug, getCasinoSeoInfoBySlug };
+const getCasinoCategoryBySlug = async (slug: string, locale?: string) => {
+    try {
+        const data = await findCasinoCategoryBySlug(slug, locale);
+
+        if (!data || data.results.length === 0) throw new Error('Casino category not found');
+
+        const categoryData = data.results[0];
+
+        return {
+            slug: categoryData.slug,
+            casinoCategoryType: categoryData.casinoCategoryType,
+            seo: categoryData.seo,
+        };
+    } catch (error) {
+        console.error('Error fetching casino category by slug:', error);
+        throw new Error('Failed to fetch casino category data');
+    }
+};
+
+export {
+    getCasinoByUUID,
+    getCasinosByType,
+    getAllCasinosWithoutPagination,
+    getCasinosBySlug,
+    getCasinoSeoInfoBySlug,
+    getCasinoCategoryBySlug,
+};

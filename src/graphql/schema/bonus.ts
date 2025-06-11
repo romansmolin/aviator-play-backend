@@ -27,6 +27,22 @@ export default `
         keywords: [String]
     }
 
+    type GetBonusCategoryBySlug {
+        slug: String
+        bonusCategoryType: BonusCategoryType
+        seo: SeoMeta
+    }
+
+    type BonusCategoryType {
+        bonusType: [String]
+    }
+
+    type SeoMeta {
+        title: String
+        description: String
+        keywords: [String]
+    }
+
     type CustomBonus {
         casinoName: String,
         casinoUuid: String
@@ -78,5 +94,6 @@ export default `
         getAllBonusesWithoutPagination(locale: String!): GetAllBonusesWithoutPagination
         getBonusBySlug(slug: String!, locale: String!): GetBonusBySlug
         getBonusSeoInfoBySlug(slug: String!, locale: String!): GetBonusSeoInfoBySlug
+        getBonusCategoryBySlug(slug: String!, locale: String): GetBonusCategoryBySlug
     }
 `;

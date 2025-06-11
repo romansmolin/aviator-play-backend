@@ -1,7 +1,6 @@
 'use strict';
 
 export const paginate = (data, page = 0, number = 8) => {
-    console.log('oooo');
     const itemsPerPage = number;
     const startIndex = (page - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;

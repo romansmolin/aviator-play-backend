@@ -35,6 +35,20 @@
       "component": "seo.seo-meta",
       "repeatable": false
     },
+    "pageType": {
+      "type": "enumeration",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "enum": [
+        "bonus-category",
+        "casino-category",
+        "static",
+        "casino-top"
+      ]
+    },
     "dynamicContent": {
       "type": "dynamiczone",
       "pluginOptions": {

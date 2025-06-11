@@ -7,6 +7,7 @@ import {
     findBonusByUuid,
     findBonusBySlug,
     findBonusSeoDataBySlug,
+    findBonusCategoryBySlug,
 } from '../repositories/bonus-repository';
 
 const getAllBonuses = async (args: any) => {
@@ -51,11 +52,11 @@ const getAllBonusesWithoutPagination = async (args: any) => {
 const getBonusesByType = async (args: any) => {
     try {
         const data = await findBonusesByTypeAndLocale(args.locale);
-
         const { page, number, type } = args;
-        const filteredBonuses = data.results.filter((bonus: any) => bonus.bonusInfo.bonusType.includes(type));
 
+        const filteredBonuses = data.results.filter((bonus: any) => bonus.bonusInfo.bonusType.bonusType.includes(type));
         const filteredProcessedBonuses = filteredBonuses.map((item: any) => bonusMapper(item));
+
         const { items: bonuses, totalPages } = paginate(filteredProcessedBonuses, page, number);
 
         return {
@@ -124,6 +125,25 @@ const getBonusSeoInfoBySlug = async (slug: string, locale: string) => {
     }
 };
 
+const getBonusCategoryBySlug = async (slug: string, locale?: string) => {
+    try {
+        const data = await findBonusCategoryBySlug(slug, locale);
+
+        if (!data || data.results.length === 0) throw new Error('Bonus category not found');
+
+        const categoryData = data.results[0];
+
+        return {
+            slug: categoryData.slug,
+            bonusCategoryType: categoryData.bonusCategoryType,
+            seo: categoryData.seo,
+        };
+    } catch (error) {
+        console.error('Error fetching bonus category by slug:', error);
+        throw new Error('Failed to fetch bonus category data');
+    }
+};
+
 export {
     getAllBonuses,
     getBonusesByType,
@@ -131,4 +151,5 @@ export {
     getAllBonusesWithoutPagination,
     getBonusBySlug,
     getBonusSeoInfoBySlug,
+    getBonusCategoryBySlug,
 };

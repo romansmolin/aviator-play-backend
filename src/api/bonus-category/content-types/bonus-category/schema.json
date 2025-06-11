@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "bonus_categories",
+  "info": {
+    "singularName": "bonus-category",
+    "pluralName": "bonus-categories",
+    "displayName": "Bonus Category"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "slug": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "regex": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "bonusCategoryType": {
+      "type": "component",
+      "component": "bonus.bonus-type",
+      "repeatable": false,
+      "required": true
+    },
+    "seo": {
+      "type": "component",
+      "component": "seo.seo-meta",
+      "repeatable": false
+    }
+  }
+}

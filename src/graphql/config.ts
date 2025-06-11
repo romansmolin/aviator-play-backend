@@ -18,6 +18,9 @@ const resolversConfig = {
     'Query.getBonusSeoInfoBySlug': {
         auth: false,
     },
+    'Query.getBonusCategoryBySlug': {
+        auth: false,
+    },
 
     // Casino resolvers
     'Query.getCasinoByUUID': {
@@ -34,6 +37,9 @@ const resolversConfig = {
     },
 
     'Query.getCasinoSeoInfoBySlug': {
+        auth: false,
+    },
+    'Query.getCasinoCategoryBySlug': {
         auth: false,
     },
 

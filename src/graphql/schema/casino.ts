@@ -51,6 +51,22 @@ export default `
       keywords: [String]
     }
 
+    type GetCasinoCategoryBySlug {
+      slug: String
+      casinoCategoryType: CasinoCategoryType
+      seo: CasinoSeoMeta
+    }
+
+    type CasinoCategoryType {
+      casinoType: [String]
+    }
+
+    type CasinoSeoMeta {
+      title: String
+      description: String
+      keywords: [String]
+    }
+
     type MainBonus {
       bonusLink: String
       info: [ReviewDetails]
@@ -99,5 +115,6 @@ export default `
         getCasinosByType(casinoType: String!, locale: String!, page: Int!, number: Int!): GetCasinoByType        
         getAllCasinosWithoutPagination(locale: String!): GetAllCasinosWithoutPagination
         getCasinoSeoInfoBySlug(locale: String!, slug: String!): GetCasinoSeoInfoBySlug
+        getCasinoCategoryBySlug(slug: String!, locale: String): GetCasinoCategoryBySlug
     }
 `;

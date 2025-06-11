@@ -13,7 +13,7 @@ export const findAllBonusesByLocale = async (locale: string) => {
 
 export const findBonusesByTypeAndLocale = async (locale: string) => {
     return await strapi.service('api::bonus.bonus').find({
-        populate: ['casinos', 'logo', 'bonusInfo', 'casinos.logo', 'faq.fact1'],
+        populate: ['casinos', 'logo', 'bonusInfo', 'bonusInfo.bonusType', 'casinos.logo', 'faq.fact1'],
         locale,
     });
 };
@@ -40,4 +40,17 @@ export const findBonusSeoDataBySlug = async (locale: string, slug: string) => {
         filters: { slug },
         populate: ['seo'],
     });
+};
+
+export const findBonusCategoryBySlug = async (slug: string, locale?: string) => {
+    const query: any = {
+        filters: { slug },
+        populate: ['bonusCategoryType', 'seo'],
+    };
+
+    if (locale) {
+        query.locale = locale;
+    }
+
+    return await strapi.service('api::bonus-category.bonus-category').find(query);
 };

@@ -364,6 +364,31 @@ export interface ApiAffiliateLinkAffiliateLink extends Struct.CollectionTypeSche
     };
 }
 
+export interface ApiBonusCategoryBonusCategory extends Struct.CollectionTypeSchema {
+    collectionName: 'bonus_categories';
+    info: {
+        displayName: 'Bonus Category';
+        pluralName: 'bonus-categories';
+        singularName: 'bonus-category';
+    };
+    options: {
+        draftAndPublish: true;
+    };
+    attributes: {
+        bonusCategoryType: Schema.Attribute.Component<'bonus.bonus-type', false> & Schema.Attribute.Required;
+        createdAt: Schema.Attribute.DateTime;
+        createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
+        locale: Schema.Attribute.String & Schema.Attribute.Private;
+        localizations: Schema.Attribute.Relation<'oneToMany', 'api::bonus-category.bonus-category'> &
+            Schema.Attribute.Private;
+        publishedAt: Schema.Attribute.DateTime;
+        seo: Schema.Attribute.Component<'seo.seo-meta', false>;
+        slug: Schema.Attribute.String & Schema.Attribute.Required & Schema.Attribute.Unique;
+        updatedAt: Schema.Attribute.DateTime;
+        updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
+    };
+}
+
 export interface ApiBonusBonus extends Struct.CollectionTypeSchema {
     collectionName: 'bonuses';
     info: {
@@ -612,6 +637,31 @@ export interface ApiCasinoCasino extends Struct.CollectionTypeSchema {
     };
 }
 
+export interface ApiCasinosCategoryCasinosCategory extends Struct.CollectionTypeSchema {
+    collectionName: 'casinos_categories';
+    info: {
+        displayName: 'Casinos Category';
+        pluralName: 'casinos-categories';
+        singularName: 'casinos-category';
+    };
+    options: {
+        draftAndPublish: true;
+    };
+    attributes: {
+        casinoCategoryType: Schema.Attribute.Component<'casino.casino-type', false> & Schema.Attribute.Required;
+        createdAt: Schema.Attribute.DateTime;
+        createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
+        locale: Schema.Attribute.String & Schema.Attribute.Private;
+        localizations: Schema.Attribute.Relation<'oneToMany', 'api::casinos-category.casinos-category'> &
+            Schema.Attribute.Private;
+        publishedAt: Schema.Attribute.DateTime;
+        seo: Schema.Attribute.Component<'seo.seo-meta', false> & Schema.Attribute.Required;
+        slug: Schema.Attribute.String & Schema.Attribute.Required & Schema.Attribute.Unique;
+        updatedAt: Schema.Attribute.DateTime;
+        updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
+    };
+}
+
 export interface ApiPagePage extends Struct.CollectionTypeSchema {
     collectionName: 'pages';
     info: {
@@ -639,6 +689,12 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
             }>;
         locale: Schema.Attribute.String;
         localizations: Schema.Attribute.Relation<'oneToMany', 'api::page.page'>;
+        pageType: Schema.Attribute.Enumeration<['bonus-category', 'casino-category', 'static', 'casino-top']> &
+            Schema.Attribute.SetPluginOptions<{
+                i18n: {
+                    localized: true;
+                };
+            }>;
         publishedAt: Schema.Attribute.DateTime;
         seo: Schema.Attribute.Component<'seo.seo-meta', false> &
             Schema.Attribute.SetPluginOptions<{
@@ -1110,8 +1166,10 @@ declare module '@strapi/strapi' {
             'admin::transfer-token-permission': AdminTransferTokenPermission;
             'admin::user': AdminUser;
             'api::affiliate-link.affiliate-link': ApiAffiliateLinkAffiliateLink;
+            'api::bonus-category.bonus-category': ApiBonusCategoryBonusCategory;
             'api::bonus.bonus': ApiBonusBonus;
             'api::casino.casino': ApiCasinoCasino;
+            'api::casinos-category.casinos-category': ApiCasinosCategoryCasinosCategory;
             'api::page.page': ApiPagePage;
             'api::top.top': ApiTopTop;
             'plugin::content-releases.release': PluginContentReleasesRelease;
