@@ -41,6 +41,7 @@ export interface BonusBonusType extends Struct.ComponentSchema {
                     'Free Spins Bonus:free-spins-bonuses',
                     'Free Cash Bonus:free-cash-bonuses',
                     '0 Wager Bonus:0-wager-bonuses',
+                    'Crypto Bonus:crypto-bonuses',
                     '',
                 ]
             > &
@@ -215,6 +216,32 @@ export interface ListCasinoTopList extends Struct.ComponentSchema {
     };
 }
 
+export interface MenuMenuLink extends Struct.ComponentSchema {
+    collectionName: 'components_menu_menu_links';
+    info: {
+        displayName: 'MenuLink';
+    };
+    attributes: {
+        bonusCategory: Schema.Attribute.Relation<'oneToOne', 'api::bonus-category.bonus-category'>;
+        casinosCategory: Schema.Attribute.Relation<'oneToOne', 'api::casinos-category.casinos-category'>;
+        externalUrl: Schema.Attribute.String;
+        title: Schema.Attribute.String;
+        type: Schema.Attribute.Enumeration<['casino', 'bonus', 'static', 'external']>;
+    };
+}
+
+export interface MenuMenuSection extends Struct.ComponentSchema {
+    collectionName: 'components_menu_menu_sections';
+    info: {
+        displayName: 'MenuSection';
+    };
+    attributes: {
+        isActive: Schema.Attribute.Boolean;
+        menuLink: Schema.Attribute.Component<'menu.menu-link', true>;
+        title: Schema.Attribute.String;
+    };
+}
+
 export interface SeoSeoMeta extends Struct.ComponentSchema {
     collectionName: 'components_seo_seo_metas';
     info: {
@@ -242,6 +269,8 @@ declare module '@strapi/strapi' {
             'faq.faq-item': FaqFaqItem;
             'list.available-promos-list': ListAvailablePromosList;
             'list.casino-top-list': ListCasinoTopList;
+            'menu.menu-link': MenuMenuLink;
+            'menu.menu-section': MenuMenuSection;
             'seo.seo-meta': SeoSeoMeta;
         }
     }

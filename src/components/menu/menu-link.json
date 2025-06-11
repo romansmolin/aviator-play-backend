@@ -1,0 +1,35 @@
+{
+  "collectionName": "components_menu_menu_links",
+  "info": {
+    "displayName": "MenuLink"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "casino",
+        "bonus",
+        "static",
+        "external"
+      ]
+    },
+    "bonusCategory": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::bonus-category.bonus-category"
+    },
+    "casinosCategory": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::casinos-category.casinos-category"
+    },
+    "externalUrl": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

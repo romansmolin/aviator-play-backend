@@ -3,6 +3,7 @@
 import {
     bonusSchema,
     casinoSchema,
+    menuSchema,
     newsletterSchema,
     nodemailerSchema,
     pageSchema,
@@ -38,6 +39,7 @@ export default (strapi: any) => {
         typeDefs: [
             bonusSchema,
             casinoSchema,
+            menuSchema,
             newsletterSchema,
             nodemailerSchema,
             pageSchema,

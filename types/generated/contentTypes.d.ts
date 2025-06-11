@@ -662,6 +662,28 @@ export interface ApiCasinosCategoryCasinosCategory extends Struct.CollectionType
     };
 }
 
+export interface ApiMenuMenu extends Struct.SingleTypeSchema {
+    collectionName: 'menus';
+    info: {
+        displayName: 'Menu';
+        pluralName: 'menus';
+        singularName: 'menu';
+    };
+    options: {
+        draftAndPublish: true;
+    };
+    attributes: {
+        createdAt: Schema.Attribute.DateTime;
+        createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
+        locale: Schema.Attribute.String & Schema.Attribute.Private;
+        localizations: Schema.Attribute.Relation<'oneToMany', 'api::menu.menu'> & Schema.Attribute.Private;
+        publishedAt: Schema.Attribute.DateTime;
+        section: Schema.Attribute.Component<'menu.menu-section', true>;
+        updatedAt: Schema.Attribute.DateTime;
+        updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
+    };
+}
+
 export interface ApiPagePage extends Struct.CollectionTypeSchema {
     collectionName: 'pages';
     info: {
@@ -1170,6 +1192,7 @@ declare module '@strapi/strapi' {
             'api::bonus.bonus': ApiBonusBonus;
             'api::casino.casino': ApiCasinoCasino;
             'api::casinos-category.casinos-category': ApiCasinosCategoryCasinosCategory;
+            'api::menu.menu': ApiMenuMenu;
             'api::page.page': ApiPagePage;
             'api::top.top': ApiTopTop;
             'plugin::content-releases.release': PluginContentReleasesRelease;

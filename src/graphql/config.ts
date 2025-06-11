@@ -70,6 +70,11 @@ const resolversConfig = {
     'Query.getTopByCountryName': {
         auth: false,
     },
+
+    // Mneu resolvers
+    'Query.getMenu': {
+        auth: false,
+    },
 };
 
 export default resolversConfig;

@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_menu_menu_sections",
+  "info": {
+    "displayName": "MenuSection"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "isActive": {
+      "type": "boolean"
+    },
+    "menuLink": {
+      "type": "component",
+      "component": "menu.menu-link",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

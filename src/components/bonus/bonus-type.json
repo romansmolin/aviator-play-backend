@@ -23,6 +23,7 @@
         "Free Spins Bonus:free-spins-bonuses",
         "Free Cash Bonus:free-cash-bonuses",
         "0 Wager Bonus:0-wager-bonuses",
+        "Crypto Bonus:crypto-bonuses",
         ""
       ],
       "required": true,
