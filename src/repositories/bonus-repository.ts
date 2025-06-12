@@ -45,7 +45,7 @@ export const findBonusSeoDataBySlug = async (locale: string, slug: string) => {
 export const findBonusCategoryBySlug = async (slug: string, locale?: string) => {
     const query: any = {
         filters: { slug },
-        populate: ['bonusCategoryType', 'seo'],
+        populate: ['bonusCategoryType', 'seo', 'coverImage'],
     };
 
     if (locale) {
@@ -53,4 +53,11 @@ export const findBonusCategoryBySlug = async (slug: string, locale?: string) => 
     }
 
     return await strapi.service('api::bonus-category.bonus-category').find(query);
+};
+
+export const findAllBonusCategories = async (locale: string) => {
+    return await strapi.service('api::bonus-category.bonus-category').find({
+        locale,
+        populate: ['coverImage', 'bonusCategoryType'],
+    });
 };

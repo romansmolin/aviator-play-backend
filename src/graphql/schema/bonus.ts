@@ -31,6 +31,14 @@ export default `
         slug: String
         bonusCategoryType: BonusCategoryType
         seo: SeoMeta
+        coverImage: String
+    }
+
+    type GetAllBonusCategories {
+        slug: String
+        bonusCategoryType: String
+        coverImage: String
+        title: String
     }
 
     type BonusCategoryType {
@@ -95,5 +103,6 @@ export default `
         getBonusBySlug(slug: String!, locale: String!): GetBonusBySlug
         getBonusSeoInfoBySlug(slug: String!, locale: String!): GetBonusSeoInfoBySlug
         getBonusCategoryBySlug(slug: String!, locale: String): GetBonusCategoryBySlug
+        getAllBonusCategories(locale: String!): [GetAllBonusCategories]
     }
 `;

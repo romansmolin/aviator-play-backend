@@ -6,6 +6,7 @@ import {
     getBonusBySlug,
     getBonusSeoInfoBySlug,
     getBonusCategoryBySlug,
+    getAllBonusCategories,
 } from '../../services/bonus-service';
 
 export default {
@@ -47,6 +48,12 @@ export default {
             resolve: async (parent: any, args: any) => {
                 const { slug, locale } = args;
                 return getBonusCategoryBySlug(slug, locale);
+            },
+        },
+        getAllBonusCategories: {
+            resolve: async (parent: any, args: any) => {
+                const { locale } = args;
+                return getAllBonusCategories(locale);
             },
         },
     },

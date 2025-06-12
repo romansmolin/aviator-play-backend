@@ -21,6 +21,9 @@ const resolversConfig = {
     'Query.getBonusCategoryBySlug': {
         auth: false,
     },
+    'Query.getAllBonusCategories': {
+        auth: false,
+    },
 
     // Casino resolvers
     'Query.getCasinoByUUID': {

@@ -8,6 +8,7 @@ import {
     findBonusBySlug,
     findBonusSeoDataBySlug,
     findBonusCategoryBySlug,
+    findAllBonusCategories,
 } from '../repositories/bonus-repository';
 
 const getAllBonuses = async (args: any) => {
@@ -128,7 +129,6 @@ const getBonusSeoInfoBySlug = async (slug: string, locale: string) => {
 const getBonusCategoryBySlug = async (slug: string, locale?: string) => {
     try {
         const data = await findBonusCategoryBySlug(slug, locale);
-
         if (!data || data.results.length === 0) throw new Error('Bonus category not found');
 
         const categoryData = data.results[0];
@@ -136,11 +136,34 @@ const getBonusCategoryBySlug = async (slug: string, locale?: string) => {
         return {
             slug: categoryData.slug,
             bonusCategoryType: categoryData.bonusCategoryType,
+            coverImage: data.results[0].coverImage.url,
             seo: categoryData.seo,
         };
     } catch (error) {
         console.error('Error fetching bonus category by slug:', error);
         throw new Error('Failed to fetch bonus category data');
+    }
+};
+
+const getAllBonusCategories = async (locale: string) => {
+    try {
+        const data = await findAllBonusCategories(locale);
+
+        if (!data || data.results.length === 0) throw new Error('Bonus not found');
+
+        const preparedData = data.results.map(category => ({
+            slug: category.slug,
+            bonusCategoryType: category.bonusCategoryType.bonusType[0],
+            coverImage: category.coverImage.url,
+            title: category.title,
+        }));
+
+        console.log('preparedData: ', preparedData);
+
+        return preparedData;
+    } catch (error) {
+        console.error('Error fetching bonus categories:', error);
+        throw new Error('Failed to fetch bonus categories');
     }
 };
 
@@ -152,4 +175,5 @@ export {
     getBonusBySlug,
     getBonusSeoInfoBySlug,
     getBonusCategoryBySlug,
+    getAllBonusCategories,
 };
