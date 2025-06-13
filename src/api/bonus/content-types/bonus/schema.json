@@ -121,9 +121,9 @@
     },
     "affiliateLink": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "manyToOne",
       "target": "api::affiliate-link.affiliate-link",
-      "mappedBy": "bonus"
+      "inversedBy": "bonuses"
     },
     "slug": {
       "type": "string",
@@ -144,6 +144,14 @@
       },
       "component": "seo.seo-meta",
       "repeatable": false
+    },
+    "publishAt": {
+      "type": "datetime",
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
     }
   }
 }

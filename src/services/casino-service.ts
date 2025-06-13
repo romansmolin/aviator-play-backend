@@ -49,10 +49,15 @@ const getCasinosByType = async (args: any, fullDomain?: string) => {
     try {
         const casinos = await findCasinosByLocale(args.locale);
         const { page, number, casinoType } = args;
+        console.log('CASINOtype: ', casinoType);
+
+        console.log('CASINOS HOHO: ', casinos.results[0].casinoType);
 
         const filteredCasinos = casinos.results.filter((casino: any) =>
-            casino.casinoType.some((type: string) => type === casinoType)
+            casino.casinoType.some((type: string) => type === casinoType.trim())
         );
+
+        console.log('filteredCasinos: ', filteredCasinos);
 
         if (!casinos) {
             return {

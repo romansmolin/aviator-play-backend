@@ -150,9 +150,9 @@
     },
     "affiliateLink": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "manyToOne",
       "target": "api::affiliate-link.affiliate-link",
-      "mappedBy": "casino"
+      "inversedBy": "casinos"
     },
     "seo": {
       "type": "component",
@@ -173,6 +173,14 @@
       },
       "required": true,
       "unique": true
+    },
+    "publishAt": {
+      "type": "datetime",
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
     }
   }
 }

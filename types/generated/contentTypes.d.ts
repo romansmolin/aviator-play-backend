@@ -344,8 +344,8 @@ export interface ApiAffiliateLinkAffiliateLink extends Struct.CollectionTypeSche
         draftAndPublish: true;
     };
     attributes: {
-        bonus: Schema.Attribute.Relation<'oneToOne', 'api::bonus.bonus'>;
-        casino: Schema.Attribute.Relation<'oneToOne', 'api::casino.casino'>;
+        bonuses: Schema.Attribute.Relation<'oneToMany', 'api::bonus.bonus'>;
+        casinos: Schema.Attribute.Relation<'oneToMany', 'api::casino.casino'>;
         clickCount: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
         createdAt: Schema.Attribute.DateTime;
         createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
@@ -408,7 +408,7 @@ export interface ApiBonusBonus extends Struct.CollectionTypeSchema {
         };
     };
     attributes: {
-        affiliateLink: Schema.Attribute.Relation<'oneToOne', 'api::affiliate-link.affiliate-link'>;
+        affiliateLink: Schema.Attribute.Relation<'manyToOne', 'api::affiliate-link.affiliate-link'>;
         bonusInfo: Schema.Attribute.Component<'bonus.bonus-info', false> &
             Schema.Attribute.Required &
             Schema.Attribute.SetPluginOptions<{
@@ -475,6 +475,12 @@ export interface ApiBonusBonus extends Struct.CollectionTypeSchema {
                     localized: true;
                 };
             }>;
+        publishAt: Schema.Attribute.DateTime &
+            Schema.Attribute.SetPluginOptions<{
+                i18n: {
+                    localized: false;
+                };
+            }>;
         publishedAt: Schema.Attribute.DateTime;
         seo: Schema.Attribute.Component<'seo.seo-meta', false> &
             Schema.Attribute.SetPluginOptions<{
@@ -513,7 +519,7 @@ export interface ApiCasinoCasino extends Struct.CollectionTypeSchema {
         };
     };
     attributes: {
-        affiliateLink: Schema.Attribute.Relation<'oneToOne', 'api::affiliate-link.affiliate-link'>;
+        affiliateLink: Schema.Attribute.Relation<'manyToOne', 'api::affiliate-link.affiliate-link'>;
         allowedCountries: Schema.Attribute.JSON &
             Schema.Attribute.Required &
             Schema.Attribute.SetPluginOptions<{
@@ -594,6 +600,12 @@ export interface ApiCasinoCasino extends Struct.CollectionTypeSchema {
             Schema.Attribute.SetPluginOptions<{
                 i18n: {
                     localized: true;
+                };
+            }>;
+        publishAt: Schema.Attribute.DateTime &
+            Schema.Attribute.SetPluginOptions<{
+                i18n: {
+                    localized: false;
                 };
             }>;
         publishedAt: Schema.Attribute.DateTime;

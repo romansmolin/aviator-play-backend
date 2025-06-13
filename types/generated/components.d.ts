@@ -127,7 +127,7 @@ export interface CasinoCasinoType extends Struct.ComponentSchema {
                     'Mobile Casino: mobile-casinos',
                     '',
                     'Live Casino: live-casinos',
-                    'New Casino: new-casinos',
+                    'New Casino: fresh-casinos',
                     'Fast Payout Casino: fast-payout-casinos',
                     'Crypto Casino: crypto-casinos',
                     'Pay N Play Casino: pay-n-play-casinos',

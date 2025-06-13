@@ -42,17 +42,17 @@
       "type": "boolean",
       "default": true
     },
-    "bonus": {
+    "bonuses": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "oneToMany",
       "target": "api::bonus.bonus",
-      "inversedBy": "affiliateLink"
+      "mappedBy": "affiliateLink"
     },
-    "casino": {
+    "casinos": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "oneToMany",
       "target": "api::casino.casino",
-      "inversedBy": "affiliateLink"
+      "mappedBy": "affiliateLink"
     }
   }
 }
