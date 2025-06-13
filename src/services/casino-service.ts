@@ -1,5 +1,3 @@
-'use strict';
-
 import { casinoMapper } from '../mappers/casino-mappers';
 import { paginate } from './paginate';
 import { withAffiliateLinks } from '../utils/add-affiliate-links';
@@ -10,6 +8,7 @@ import {
     findCasinoBySlug,
     findCasinoSeoDataBySlug,
     findCasinoCategoryBySlug,
+    findAllCasinosCategories,
 } from '../repositories/casino-repository';
 
 const getCasinoByUUID = async (uuid: string, locale: string, fullDomain?: string) => {
@@ -170,6 +169,24 @@ const getCasinoCategoryBySlug = async (slug: string, locale?: string) => {
     }
 };
 
+const getAllCasinosCategories = async (locale: string) => {
+    try {
+        const data = await findAllCasinosCategories(locale);
+        if (!data || data.results.length === 0) return [];
+
+        const preparedData = data.results.map(category => ({
+            slug: category.slug,
+            coverImage: category.coverImage.url,
+            title: category.title,
+        }));
+
+        return preparedData;
+    } catch (error) {
+        console.error('Error fetching all casinos categories:', error);
+        throw new Error('Failed to fetch all casinos categories');
+    }
+};
+
 export {
     getCasinoByUUID,
     getCasinosByType,
@@ -177,4 +194,5 @@ export {
     getCasinosBySlug,
     getCasinoSeoInfoBySlug,
     getCasinoCategoryBySlug,
+    getAllCasinosCategories,
 };

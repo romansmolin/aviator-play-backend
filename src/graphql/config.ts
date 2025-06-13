@@ -45,6 +45,9 @@ const resolversConfig = {
     'Query.getCasinoCategoryBySlug': {
         auth: false,
     },
+    'Query.getAllCasinosCategories': {
+        auth: false,
+    },
 
     // Newsletter resolvers
     'Mutation.signUpOnNewsletter': {

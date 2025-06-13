@@ -651,6 +651,7 @@ export interface ApiCasinosCategoryCasinosCategory extends Struct.CollectionType
     };
     attributes: {
         casinoCategoryType: Schema.Attribute.Component<'casino.casino-type', false> & Schema.Attribute.Required;
+        coverImage: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
         createdAt: Schema.Attribute.DateTime;
         createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
         locale: Schema.Attribute.String & Schema.Attribute.Private;
@@ -659,6 +660,7 @@ export interface ApiCasinosCategoryCasinosCategory extends Struct.CollectionType
         publishedAt: Schema.Attribute.DateTime;
         seo: Schema.Attribute.Component<'seo.seo-meta', false> & Schema.Attribute.Required;
         slug: Schema.Attribute.String & Schema.Attribute.Required & Schema.Attribute.Unique;
+        title: Schema.Attribute.String & Schema.Attribute.Required;
         updatedAt: Schema.Attribute.DateTime;
         updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
     };

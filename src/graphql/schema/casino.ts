@@ -1,5 +1,3 @@
-'use strict';
-
 export default `
     type GetCasinoByUUID {
       id: Int
@@ -108,6 +106,12 @@ export default `
       type: String
     }
 
+    type GetAllCasinosCategories {
+        slug: String
+        title: String
+        coverImage: String
+    }
+
     extend type Query {
         getCasinoByUUID(uuid: String!, locale: String!): GetCasinoByUUID
         getCasinoBySlug(slug: String!, locale: String!): GetCasinoByUUID
@@ -116,5 +120,6 @@ export default `
         getAllCasinosWithoutPagination(locale: String!): GetAllCasinosWithoutPagination
         getCasinoSeoInfoBySlug(locale: String!, slug: String!): GetCasinoSeoInfoBySlug
         getCasinoCategoryBySlug(slug: String!, locale: String): GetCasinoCategoryBySlug
+        getAllCasinosCategories(locale: String!): [GetAllCasinosCategories]
     }
 `;

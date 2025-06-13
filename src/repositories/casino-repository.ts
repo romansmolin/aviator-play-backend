@@ -69,3 +69,11 @@ export const findCasinoCategoryBySlug = async (slug: string, locale?: string) =>
 
     return await strapi.service('api::casinos-category.casinos-category').find(query);
 };
+
+export const findAllCasinosCategories = async (locale?: string) => {
+    const query: any = {
+        populate: ['coverImage'],
+    };
+    if (locale) query.locale = locale;
+    return await strapi.service('api::casinos-category.casinos-category').find(query);
+};

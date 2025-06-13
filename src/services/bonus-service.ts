@@ -149,7 +149,7 @@ const getAllBonusCategories = async (locale: string) => {
     try {
         const data = await findAllBonusCategories(locale);
 
-        if (!data || data.results.length === 0) throw new Error('Bonus not found');
+        if (!data || data.results.length === 0) return [];
 
         const preparedData = data.results.map(category => ({
             slug: category.slug,
@@ -157,8 +157,6 @@ const getAllBonusCategories = async (locale: string) => {
             coverImage: category.coverImage.url,
             title: category.title,
         }));
-
-        console.log('preparedData: ', preparedData);
 
         return preparedData;
     } catch (error) {

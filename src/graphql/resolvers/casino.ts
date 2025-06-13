@@ -5,6 +5,7 @@ import {
     getCasinosBySlug,
     getCasinoSeoInfoBySlug,
     getCasinoCategoryBySlug,
+    getAllCasinosCategories,
 } from '../../services/casino-service';
 import { getDomainFromRequest } from '../../utils/get-domain-from-request';
 
@@ -43,6 +44,12 @@ export default {
             resolve: async (parent: any, args: any) => {
                 const { slug, locale } = args;
                 return getCasinoCategoryBySlug(slug, locale);
+            },
+        },
+        getAllCasinosCategories: {
+            resolve: async (parent: any, args: any) => {
+                const { locale } = args;
+                return getAllCasinosCategories(locale);
             },
         },
     },
