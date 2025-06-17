@@ -114,11 +114,6 @@ const getCasinosBySlug = async (slug: string, locale: string, fullDomain?: strin
 
         if (!data || data.results.length === 0) throw new Error('Casino not found');
 
-        console.log(
-            'REVIEW ROMA: ',
-            data.results[0].review.find(item => item.type === 'image')
-        );
-
         const casino = {
             id: data.results[0].id,
             name: data.results[0].name,

@@ -1,6 +1,13 @@
 export const findMenu = async (locale?: string) => {
     const query: any = {
-        populate: ['section', 'section.menuLink', 'section.menuLink.bonusCategory', 'section.menuLink.casinosCategory'],
+        populate: [
+            'section',
+            'section.menuLink',
+            'section.menuLink.bonusCategory',
+            'section.menuLink.casinosCategory',
+            'section.menuLink.page',
+            'section.menuLink.casinoTopPage',
+        ],
     };
 
     // menu doesn't have i18n enabled, so we don't use locale

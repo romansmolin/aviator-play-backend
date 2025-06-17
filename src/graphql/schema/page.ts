@@ -9,6 +9,18 @@ export default `
         keywords: [String]
     }
 
+    type PageInfo {
+        slug: String
+        pageType: ENUM_PAGE_PAGETYPE
+    }
+
+    enum ENUM_PAGE_PAGETYPE {
+        bonus_category
+        casino_category
+        static
+        casino_top
+    }
+
     type PageContent {
         type: String
         content: [PageDetails]
@@ -47,6 +59,7 @@ export default `
 
     extend type Query {
         getPageContentBySlug(slug: String!, locale: String!): GetPageContentBySlug 
-        getPageSeoInfoBySlug(slug: String!, locale: String!):  GetPageSeoBySlug      
+        getPageSeoInfoBySlug(slug: String!, locale: String!): GetPageSeoBySlug
+        getAllPages(locale: String!): [PageInfo]      
     }
 `;

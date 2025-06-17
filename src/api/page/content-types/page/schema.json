@@ -23,7 +23,8 @@
           "localized": true
         }
       },
-      "required": true
+      "required": true,
+      "unique": true
     },
     "seo": {
       "type": "component",

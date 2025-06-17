@@ -214,9 +214,10 @@ export interface MenuMenuLink extends Struct.ComponentSchema {
     attributes: {
         bonusCategory: Schema.Attribute.Relation<'oneToOne', 'api::bonus-category.bonus-category'>;
         casinosCategory: Schema.Attribute.Relation<'oneToOne', 'api::casinos-category.casinos-category'>;
+        casinoTopPage: Schema.Attribute.Relation<'oneToOne', 'api::casino-top-page.casino-top-page'>;
         externalUrl: Schema.Attribute.String;
+        page: Schema.Attribute.Relation<'oneToOne', 'api::page.page'>;
         title: Schema.Attribute.String;
-        topSlug: Schema.Attribute.String;
         type: Schema.Attribute.Enumeration<['casino', 'bonus', 'static', 'external', 'top']>;
     };
 }

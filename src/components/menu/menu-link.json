@@ -28,10 +28,17 @@
       "relation": "oneToOne",
       "target": "api::casinos-category.casinos-category"
     },
-    "externalUrl": {
-      "type": "string"
+    "page": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::page.page"
     },
-    "topSlug": {
+    "casinoTopPage": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::casino-top-page.casino-top-page"
+    },
+    "externalUrl": {
       "type": "string"
     }
   },

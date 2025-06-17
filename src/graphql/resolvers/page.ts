@@ -1,4 +1,4 @@
-import { getPageContentBySlug, getSeoInfoBySlug } from '../../services/page-service';
+import { getPageContentBySlug, getAllPages, getSeoInfoBySlug } from '../../services/page-service';
 
 export default {
     Query: {
@@ -10,6 +10,11 @@ export default {
         getPageSeoInfoBySlug: {
             resolve: async (parent: any, args: any) => {
                 return getSeoInfoBySlug(args.slug, args.locale);
+            },
+        },
+        getAllPages: {
+            resolve: async (parent: any, args: any) => {
+                return getAllPages(args.locale);
             },
         },
     },

@@ -36,6 +36,24 @@ const getPageContentBySlug = async (slug: string, locale: string) => {
     }
 };
 
+const getAllPages = async (locale: string) => {
+    try {
+        const pages = await findPagesByLocale(locale);
+
+        if (!pages || pages.results.length === 0) {
+            return [];
+        }
+
+        return pages.results.map((page: any) => ({
+            slug: page.slug,
+            pageType: page.pageType,
+        }));
+    } catch (err) {
+        console.error('Error fetching all pages:', err);
+        throw new Error('Error fetching all pages');
+    }
+};
+
 const getSeoInfoBySlug = async (slug: string, locale: string) => {
     try {
         const data = await getPageSeoInfoBySlug(slug, locale);
@@ -53,4 +71,4 @@ const getSeoInfoBySlug = async (slug: string, locale: string) => {
     }
 };
 
-export { getPageContentBySlug, getSeoInfoBySlug };
+export { getPageContentBySlug, getAllPages, getSeoInfoBySlug };

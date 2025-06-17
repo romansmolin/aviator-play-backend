@@ -11,19 +11,8 @@ export default `
 
     type MenuLink {
         title: String
+        slug: String
         type: ENUM_MENU_LINK_TYPE
-        bonusCategory: BonusCategory
-        casinosCategory: CasinosCategory
-        topSlug: String
-        externalUrl: String
-    }
-
-    type BonusCategory {
-        slug: String
-    }
-
-    type CasinosCategory {
-        slug: String
     }
 
     enum ENUM_MENU_LINK_TYPE {

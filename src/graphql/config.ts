@@ -66,6 +66,9 @@ const resolversConfig = {
     'Query.getPageSeoInfoBySlug': {
         auth: false,
     },
+    'Query.getAllPages': {
+        auth: false,
+    },
 
     // Search resolvers
     'Query.globalSearch': {
