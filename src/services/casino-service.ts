@@ -166,6 +166,7 @@ const getCasinoCategoryBySlug = async (slug: string, locale?: string) => {
         return {
             slug: categoryData.slug,
             casinoCategoryType: categoryData.casinoCategoryType,
+            pageTitle: categoryData.title,
             seo: categoryData.seo,
         };
     } catch (error) {

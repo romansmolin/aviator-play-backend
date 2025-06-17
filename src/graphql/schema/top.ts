@@ -8,16 +8,30 @@ export default `
     type MainTopEntry {
       rating: Float
       title: String
-      main_bonus_title: String
+      mainBonusTitle: String
       hasRegularOffers: Boolean
       hasLiveCasino: Boolean
       hasVIPProgram: Boolean
       hasLiveChat: Boolean
       logo: String
-      casino: String
+      slug: String
+    }
+
+    type TopPageSeo {
+      title: String
+      description: String
+      keywords: String
+    }
+
+    type TopPage {
+      id: String
+      pageTitle: String
+      slug: String
+      top: GetTopByCountryName
     }
 
     extend type Query {
         getTopByCountryName(country: String!, locale: String!): GetTopByCountryName
+        getTopPageBySlug(slug: String!, locale: String!): TopPage
     }
 `;

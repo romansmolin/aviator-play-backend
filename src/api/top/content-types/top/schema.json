@@ -26,14 +26,14 @@
     },
     "MainTop": {
       "type": "dynamiczone",
-      "components": [
-        "card.casino-card"
-      ],
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
-      }
+      },
+      "components": [
+        "card.casino-card"
+      ]
     }
   }
 }

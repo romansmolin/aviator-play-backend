@@ -14,6 +14,7 @@ export default `
         type: ENUM_MENU_LINK_TYPE
         bonusCategory: BonusCategory
         casinosCategory: CasinosCategory
+        topSlug: String
         externalUrl: String
     }
 
@@ -30,6 +31,7 @@ export default `
         bonus
         static
         external
+        top
     }
 
     extend type Query {

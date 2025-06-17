@@ -14,7 +14,8 @@
         "casino",
         "bonus",
         "static",
-        "external"
+        "external",
+        "top"
       ]
     },
     "bonusCategory": {
@@ -28,6 +29,9 @@
       "target": "api::casinos-category.casinos-category"
     },
     "externalUrl": {
+      "type": "string"
+    },
+    "topSlug": {
       "type": "string"
     }
   },

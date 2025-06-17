@@ -53,6 +53,7 @@ export default `
       slug: String
       casinoCategoryType: CasinoCategoryType
       seo: CasinoSeoMeta
+      pageTitle: String
     }
 
     type CasinoCategoryType {

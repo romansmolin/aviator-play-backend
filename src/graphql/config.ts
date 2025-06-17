@@ -76,6 +76,9 @@ const resolversConfig = {
     'Query.getTopByCountryName': {
         auth: false,
     },
+    'Query.getTopPageBySlug': {
+        auth: false,
+    },
 
     // Mneu resolvers
     'Query.getMenu': {

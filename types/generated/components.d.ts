@@ -82,16 +82,6 @@ export interface CardCasinoCard extends Struct.ComponentSchema {
         hasLiveChat: Schema.Attribute.Boolean;
         hasRegularOffers: Schema.Attribute.Boolean;
         hasVIPProgram: Schema.Attribute.Boolean;
-        logo: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
-        main_bonus_title: Schema.Attribute.String;
-        rating: Schema.Attribute.Integer &
-            Schema.Attribute.SetMinMax<
-                {
-                    max: 100;
-                },
-                number
-            >;
-        title: Schema.Attribute.String;
     };
 }
 
@@ -226,7 +216,8 @@ export interface MenuMenuLink extends Struct.ComponentSchema {
         casinosCategory: Schema.Attribute.Relation<'oneToOne', 'api::casinos-category.casinos-category'>;
         externalUrl: Schema.Attribute.String;
         title: Schema.Attribute.String;
-        type: Schema.Attribute.Enumeration<['casino', 'bonus', 'static', 'external']>;
+        topSlug: Schema.Attribute.String;
+        type: Schema.Attribute.Enumeration<['casino', 'bonus', 'static', 'external', 'top']>;
     };
 }
 

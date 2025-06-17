@@ -502,6 +502,32 @@ export interface ApiBonusBonus extends Struct.CollectionTypeSchema {
     };
 }
 
+export interface ApiCasinoTopPageCasinoTopPage extends Struct.CollectionTypeSchema {
+    collectionName: 'casino_top_pages';
+    info: {
+        displayName: 'Casino Top Page';
+        pluralName: 'casino-top-pages';
+        singularName: 'casino-top-page';
+    };
+    options: {
+        draftAndPublish: true;
+    };
+    attributes: {
+        createdAt: Schema.Attribute.DateTime;
+        createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
+        locale: Schema.Attribute.String & Schema.Attribute.Private;
+        localizations: Schema.Attribute.Relation<'oneToMany', 'api::casino-top-page.casino-top-page'> &
+            Schema.Attribute.Private;
+        pageTitle: Schema.Attribute.String & Schema.Attribute.Required;
+        publishedAt: Schema.Attribute.DateTime;
+        seo: Schema.Attribute.Component<'seo.seo-meta', true>;
+        slug: Schema.Attribute.String & Schema.Attribute.Required & Schema.Attribute.Unique;
+        top: Schema.Attribute.Relation<'oneToOne', 'api::top.top'>;
+        updatedAt: Schema.Attribute.DateTime;
+        updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
+    };
+}
+
 export interface ApiCasinoCasino extends Struct.CollectionTypeSchema {
     collectionName: 'casinos';
     info: {
@@ -1206,6 +1232,7 @@ declare module '@strapi/strapi' {
             'api::affiliate-link.affiliate-link': ApiAffiliateLinkAffiliateLink;
             'api::bonus-category.bonus-category': ApiBonusCategoryBonusCategory;
             'api::bonus.bonus': ApiBonusBonus;
+            'api::casino-top-page.casino-top-page': ApiCasinoTopPageCasinoTopPage;
             'api::casino.casino': ApiCasinoCasino;
             'api::casinos-category.casinos-category': ApiCasinosCategoryCasinosCategory;
             'api::menu.menu': ApiMenuMenu;

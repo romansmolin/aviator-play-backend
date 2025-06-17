@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "casino_top_pages",
+  "info": {
+    "singularName": "casino-top-page",
+    "pluralName": "casino-top-pages",
+    "displayName": "Casino Top Page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "pageTitle": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "regex": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "seo": {
+      "type": "component",
+      "component": "seo.seo-meta",
+      "repeatable": true
+    },
+    "top": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::top.top"
+    }
+  }
+}

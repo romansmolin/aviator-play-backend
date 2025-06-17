@@ -7,27 +7,6 @@
   },
   "options": {},
   "attributes": {
-    "title": {
-      "type": "string"
-    },
-    "main_bonus_title": {
-      "type": "string"
-    },
-    "logo": {
-      "type": "media",
-      "multiple": true,
-      "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
-    },
-    "rating": {
-      "type": "integer",
-      "max": 100
-    },
     "hasRegularOffers": {
       "type": "boolean"
     },
