@@ -92,6 +92,13 @@ export default `
     type ReviewDetails {
       type: String
       children: [ReviewText]
+      level: Int
+      format: String
+      image: Image
+    }
+
+    type Image {
+      url: String
     }
 
     type ReviewText {
@@ -105,6 +112,7 @@ export default `
     type ReviewTextChildren {
       text: String
       type: String
+      bold: Boolean
     }
 
     type GetAllCasinosCategories {
