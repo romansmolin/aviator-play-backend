@@ -48,6 +48,7 @@ export const findBonusCategoryBySlug = async (slug: string, locale?: string) => 
         populate: ['bonusCategoryType', 'seo', 'coverImage'],
     };
 
+    // Now bonus-category has i18n enabled, so we can properly use locale
     if (locale) {
         query.locale = locale;
     }
@@ -56,6 +57,7 @@ export const findBonusCategoryBySlug = async (slug: string, locale?: string) => 
 };
 
 export const findAllBonusCategories = async (locale: string) => {
+    // Now bonus-category has i18n enabled, so we can properly filter by locale
     return await strapi.service('api::bonus-category.bonus-category').find({
         locale,
         populate: ['coverImage', 'bonusCategoryType'],

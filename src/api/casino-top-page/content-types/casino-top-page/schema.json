@@ -9,27 +9,51 @@
   "options": {
     "draftAndPublish": true
   },
-  "pluginOptions": {},
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
   "attributes": {
     "pageTitle": {
       "type": "string",
-      "required": true
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "slug": {
       "type": "string",
       "required": true,
       "unique": true,
-      "regex": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+      "regex": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "seo": {
       "type": "component",
       "component": "seo.seo-meta",
-      "repeatable": true
+      "repeatable": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "top": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "api::top.top"
+      "target": "api::top.top",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     }
   }
 }

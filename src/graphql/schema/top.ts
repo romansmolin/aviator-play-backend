@@ -29,9 +29,14 @@ export default `
       slug: String
       top: GetTopByCountryName
     }
+    
+    type GetAllTops {
+      slug: String
+    }
 
     extend type Query {
         getTopByCountryName(country: String!, locale: String!): GetTopByCountryName
         getTopPageBySlug(slug: String!, locale: String!): TopPage
+        getAllTops(locale: String!): [GetAllTops]
     }
 `;

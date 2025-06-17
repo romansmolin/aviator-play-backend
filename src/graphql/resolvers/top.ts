@@ -1,4 +1,5 @@
-import { getTopByCountryName, getTopPageBySlug } from '../../services/top-service';
+import { resolve } from 'path';
+import { getAllTops, getTopByCountryName, getTopPageBySlug } from '../../services/top-service';
 
 export default (strapi: any) => ({
     Query: {
@@ -10,6 +11,11 @@ export default (strapi: any) => ({
         getTopPageBySlug: {
             resolve: async (parent: any, args: any) => {
                 return getTopPageBySlug(args.slug, args.locale);
+            },
+        },
+        getAllTops: {
+            resolve: async (parent: any, args: any) => {
+                return getAllTops(args.locale);
             },
         },
     },

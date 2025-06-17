@@ -9,28 +9,52 @@
   "options": {
     "draftAndPublish": true
   },
-  "pluginOptions": {},
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
   "attributes": {
     "title": {
       "type": "string",
-      "required": true
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "slug": {
       "type": "string",
       "required": true,
       "unique": true,
-      "regex": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+      "regex": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "bonusCategoryType": {
       "type": "component",
       "component": "bonus.bonus-type",
       "repeatable": false,
-      "required": true
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "seo": {
       "type": "component",
       "component": "seo.seo-meta",
-      "repeatable": false
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "coverImage": {
       "type": "media",
@@ -40,7 +64,12 @@
         "files",
         "videos",
         "audios"
-      ]
+      ],
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     }
   }
 }

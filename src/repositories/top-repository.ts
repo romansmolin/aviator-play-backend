@@ -13,3 +13,10 @@ export const findTopPageBySlug = async (slug: string, locale: string) => {
         filters: { slug },
     });
 };
+
+export const findAllTops = async (locale: string) => {
+    console.log('locale: ', locale);
+    return await strapi.service('api::casino-top-page.casino-top-page').find({
+        locale,
+    });
+};

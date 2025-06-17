@@ -79,6 +79,9 @@ const resolversConfig = {
     'Query.getTopPageBySlug': {
         auth: false,
     },
+    'Query.getAllTops': {
+        auth: false,
+    },
 
     // Mneu resolvers
     'Query.getMenu': {

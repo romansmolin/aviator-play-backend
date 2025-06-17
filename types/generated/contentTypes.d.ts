@@ -374,18 +374,51 @@ export interface ApiBonusCategoryBonusCategory extends Struct.CollectionTypeSche
     options: {
         draftAndPublish: true;
     };
+    pluginOptions: {
+        i18n: {
+            localized: true;
+        };
+    };
     attributes: {
-        bonusCategoryType: Schema.Attribute.Component<'bonus.bonus-type', false> & Schema.Attribute.Required;
-        coverImage: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+        bonusCategoryType: Schema.Attribute.Component<'bonus.bonus-type', false> &
+            Schema.Attribute.Required &
+            Schema.Attribute.SetPluginOptions<{
+                i18n: {
+                    localized: true;
+                };
+            }>;
+        coverImage: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
+            Schema.Attribute.SetPluginOptions<{
+                i18n: {
+                    localized: true;
+                };
+            }>;
         createdAt: Schema.Attribute.DateTime;
         createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
-        locale: Schema.Attribute.String & Schema.Attribute.Private;
-        localizations: Schema.Attribute.Relation<'oneToMany', 'api::bonus-category.bonus-category'> &
-            Schema.Attribute.Private;
+        locale: Schema.Attribute.String;
+        localizations: Schema.Attribute.Relation<'oneToMany', 'api::bonus-category.bonus-category'>;
         publishedAt: Schema.Attribute.DateTime;
-        seo: Schema.Attribute.Component<'seo.seo-meta', false>;
-        slug: Schema.Attribute.String & Schema.Attribute.Required & Schema.Attribute.Unique;
-        title: Schema.Attribute.String & Schema.Attribute.Required;
+        seo: Schema.Attribute.Component<'seo.seo-meta', false> &
+            Schema.Attribute.SetPluginOptions<{
+                i18n: {
+                    localized: true;
+                };
+            }>;
+        slug: Schema.Attribute.String &
+            Schema.Attribute.Required &
+            Schema.Attribute.Unique &
+            Schema.Attribute.SetPluginOptions<{
+                i18n: {
+                    localized: true;
+                };
+            }>;
+        title: Schema.Attribute.String &
+            Schema.Attribute.Required &
+            Schema.Attribute.SetPluginOptions<{
+                i18n: {
+                    localized: true;
+                };
+            }>;
         updatedAt: Schema.Attribute.DateTime;
         updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
     };
@@ -512,17 +545,44 @@ export interface ApiCasinoTopPageCasinoTopPage extends Struct.CollectionTypeSche
     options: {
         draftAndPublish: true;
     };
+    pluginOptions: {
+        i18n: {
+            localized: true;
+        };
+    };
     attributes: {
         createdAt: Schema.Attribute.DateTime;
         createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
-        locale: Schema.Attribute.String & Schema.Attribute.Private;
-        localizations: Schema.Attribute.Relation<'oneToMany', 'api::casino-top-page.casino-top-page'> &
-            Schema.Attribute.Private;
-        pageTitle: Schema.Attribute.String & Schema.Attribute.Required;
+        locale: Schema.Attribute.String;
+        localizations: Schema.Attribute.Relation<'oneToMany', 'api::casino-top-page.casino-top-page'>;
+        pageTitle: Schema.Attribute.String &
+            Schema.Attribute.Required &
+            Schema.Attribute.SetPluginOptions<{
+                i18n: {
+                    localized: true;
+                };
+            }>;
         publishedAt: Schema.Attribute.DateTime;
-        seo: Schema.Attribute.Component<'seo.seo-meta', true>;
-        slug: Schema.Attribute.String & Schema.Attribute.Required & Schema.Attribute.Unique;
-        top: Schema.Attribute.Relation<'oneToOne', 'api::top.top'>;
+        seo: Schema.Attribute.Component<'seo.seo-meta', true> &
+            Schema.Attribute.SetPluginOptions<{
+                i18n: {
+                    localized: true;
+                };
+            }>;
+        slug: Schema.Attribute.String &
+            Schema.Attribute.Required &
+            Schema.Attribute.Unique &
+            Schema.Attribute.SetPluginOptions<{
+                i18n: {
+                    localized: true;
+                };
+            }>;
+        top: Schema.Attribute.Relation<'oneToOne', 'api::top.top'> &
+            Schema.Attribute.SetPluginOptions<{
+                i18n: {
+                    localized: true;
+                };
+            }>;
         updatedAt: Schema.Attribute.DateTime;
         updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
     };
@@ -687,18 +747,52 @@ export interface ApiCasinosCategoryCasinosCategory extends Struct.CollectionType
     options: {
         draftAndPublish: true;
     };
+    pluginOptions: {
+        i18n: {
+            localized: true;
+        };
+    };
     attributes: {
-        casinoCategoryType: Schema.Attribute.Component<'casino.casino-type', false> & Schema.Attribute.Required;
-        coverImage: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+        casinoCategoryType: Schema.Attribute.Component<'casino.casino-type', false> &
+            Schema.Attribute.Required &
+            Schema.Attribute.SetPluginOptions<{
+                i18n: {
+                    localized: true;
+                };
+            }>;
+        coverImage: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
+            Schema.Attribute.SetPluginOptions<{
+                i18n: {
+                    localized: true;
+                };
+            }>;
         createdAt: Schema.Attribute.DateTime;
         createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
-        locale: Schema.Attribute.String & Schema.Attribute.Private;
-        localizations: Schema.Attribute.Relation<'oneToMany', 'api::casinos-category.casinos-category'> &
-            Schema.Attribute.Private;
+        locale: Schema.Attribute.String;
+        localizations: Schema.Attribute.Relation<'oneToMany', 'api::casinos-category.casinos-category'>;
         publishedAt: Schema.Attribute.DateTime;
-        seo: Schema.Attribute.Component<'seo.seo-meta', false> & Schema.Attribute.Required;
-        slug: Schema.Attribute.String & Schema.Attribute.Required & Schema.Attribute.Unique;
-        title: Schema.Attribute.String & Schema.Attribute.Required;
+        seo: Schema.Attribute.Component<'seo.seo-meta', false> &
+            Schema.Attribute.Required &
+            Schema.Attribute.SetPluginOptions<{
+                i18n: {
+                    localized: true;
+                };
+            }>;
+        slug: Schema.Attribute.String &
+            Schema.Attribute.Required &
+            Schema.Attribute.Unique &
+            Schema.Attribute.SetPluginOptions<{
+                i18n: {
+                    localized: true;
+                };
+            }>;
+        title: Schema.Attribute.String &
+            Schema.Attribute.Required &
+            Schema.Attribute.SetPluginOptions<{
+                i18n: {
+                    localized: true;
+                };
+            }>;
         updatedAt: Schema.Attribute.DateTime;
         updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
     };

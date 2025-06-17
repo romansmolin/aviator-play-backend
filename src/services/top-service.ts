@@ -1,4 +1,4 @@
-import { findTopByCountryName, findTopPageBySlug } from '../repositories/top-repository';
+import { findAllTops, findTopByCountryName, findTopPageBySlug } from '../repositories/top-repository';
 
 const getTopByCountryName = async (country: string, locale: string) => {
     if (!country) throw new Error('Country parameter is required');
@@ -93,4 +93,23 @@ const getTopPageBySlug = async (slug: string, locale: string) => {
     }
 };
 
-export { getTopByCountryName, getTopPageBySlug };
+const getAllTops = async (locale: string) => {
+    try {
+        if (!locale) throw Error('Locale is required for getAllTops method');
+
+        const tops = await findAllTops(locale);
+        console.log('TOPS: ', tops);
+        if (!tops || tops.results.length === 0) throw Error('No top is found');
+
+        const preparedData = tops.results.map(top => ({
+            slug: top.slug,
+        }));
+
+        return preparedData;
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
+};
+
+export { getTopByCountryName, getTopPageBySlug, getAllTops };

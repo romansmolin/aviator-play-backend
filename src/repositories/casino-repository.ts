@@ -63,6 +63,7 @@ export const findCasinoCategoryBySlug = async (slug: string, locale?: string) =>
         populate: ['casinoCategoryType', 'seo'],
     };
 
+    // Now casinos-category has i18n enabled, so we can properly use locale
     if (locale) {
         query.locale = locale;
     }
@@ -74,6 +75,7 @@ export const findAllCasinosCategories = async (locale?: string) => {
     const query: any = {
         populate: ['coverImage'],
     };
+    // Now casinos-category has i18n enabled, so we can properly use locale
     if (locale) query.locale = locale;
     return await strapi.service('api::casinos-category.casinos-category').find(query);
 };
