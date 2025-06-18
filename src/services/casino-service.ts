@@ -14,15 +14,12 @@ import {
 const getCasinoByUUID = async (uuid: string, locale: string, fullDomain?: string) => {
     try {
         const data = await findCasinoByUuid(uuid, locale);
-
-        console.log('data: ', data.results[0]);
-
         if (!data || data.results.length === 0) throw new Error('Casino not found');
 
         const casino = {
             id: data.results[0].id,
             name: data.results[0].name,
-            bonus_title: data.results[0].bonus_title,
+            bonusTitle: data.results[0].bonus_title,
             logoUrl: data.results[0].logo[0].url,
             features: data.results[0].features,
             rating: data.results[0].rating,
@@ -49,9 +46,6 @@ const getCasinosByType = async (args: any, fullDomain?: string) => {
     try {
         const casinos = await findCasinosByLocale(args.locale);
         const { page, number, casinoType } = args;
-        console.log('CASINOtype: ', casinoType);
-
-        console.log('CASINOS HOHO: ', casinos.results[0].casinoType);
 
         const filteredCasinos = casinos.results.filter((casino: any) =>
             casino.casinoType.some((type: string) => type === casinoType.trim())
@@ -114,10 +108,22 @@ const getCasinosBySlug = async (slug: string, locale: string, fullDomain?: strin
 
         if (!data || data.results.length === 0) throw new Error('Casino not found');
 
+        const casinoEntity = data.results[0];
+
+        const gameProviders = casinoEntity.gameProviders.map(provider => ({
+            providerLogo: provider.logo.url || '',
+            name: provider.name,
+        }));
+
+        const paymentProviders = casinoEntity.paymentProviders.map(paymentProvider => ({
+            paymentLogo: paymentProvider.logo.url || '',
+            name: paymentProvider.name,
+        }));
+
         const casino = {
             id: data.results[0].id,
             name: data.results[0].name,
-            bonus_title: data.results[0].bonus_title,
+            bonusTitle: data.results[0].bonus_title,
             logoUrl: data.results[0].logo[0].url,
             features: data.results[0].features,
             rating: data.results[0].rating,
@@ -130,6 +136,8 @@ const getCasinosBySlug = async (slug: string, locale: string, fullDomain?: strin
             allowedCurrencies: data.results[0].allowedCurrencies || [],
             slug: data.results[0].slug,
             affiliateLink: data.results[0].affiliateLink,
+            gameProviders,
+            paymentProviders,
         };
 
         // Add affiliate link if domain is provided

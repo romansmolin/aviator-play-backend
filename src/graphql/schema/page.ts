@@ -27,6 +27,13 @@ export default `
         image: Image
         position: String
         imageBackgroundColor: String
+        badge: String
+        actionButton: ActionButton
+    }
+
+    type ActionButton {
+        title: String
+        link: String
     }
 
     type Image {
@@ -35,6 +42,7 @@ export default `
 
     type PageDetails {
         type: String
+        format: String
         children: [PageText]
         faqs: [FAQItem]
     }

@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "payment_providers",
+  "info": {
+    "singularName": "payment-provider",
+    "pluralName": "payment-providers",
+    "displayName": "Payment Provider"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    },
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "casinos": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::casino.casino",
+      "mappedBy": "paymentProviders"
+    }
+  }
+}

@@ -2,7 +2,7 @@ const casinoMapper = casino => {
     const result = {
         id: casino.id,
         name: casino.name,
-        bonus_title: casino.bonus_title,
+        bonusTitle: casino.bonus_title,
         logoUrl: casino.logo[0].url,
         features: casino.features,
         rating: casino.rating,

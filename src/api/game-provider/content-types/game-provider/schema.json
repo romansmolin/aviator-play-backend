@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "game_providers",
+  "info": {
+    "singularName": "game-provider",
+    "pluralName": "game-providers",
+    "displayName": "Game Provider"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    },
+    "casinos": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::casino.casino",
+      "inversedBy": "gameProviders"
+    }
+  }
+}

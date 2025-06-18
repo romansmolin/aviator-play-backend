@@ -1,25 +1,37 @@
 import { pageContentSectionMapper, pageFaqSectionMapper } from '../mappers/page-mappers';
 import { findPagesByLocale, getPageSeoInfoBySlug } from '../repositories/page-repository';
 
-const processedPageContent = (content: any) =>
-    content
+const processedPageContent = (content: any) => {
+    if (!content || !Array.isArray(content)) {
+        return [];
+    }
+
+    return content
         .map((contentItem: any) => {
+            if (!contentItem || !contentItem.__component) {
+                return null;
+            }
+
             switch (contentItem.__component) {
                 case 'content.content-section':
                     return pageContentSectionMapper(contentItem);
                 case 'faq.faq':
                     return pageFaqSectionMapper(contentItem);
                 default:
+                    console.warn(`Unknown component type: ${contentItem.__component}`);
                     return null; // Handle unknown types
             }
         })
         .filter((item: any) => item !== null);
+};
 
 const getPageContentBySlug = async (slug: string, locale: string) => {
     try {
         const pages = await findPagesByLocale(locale);
-
         const page = pages.results.find((page: any) => page.slug === slug);
+
+        console.log('page: ', page?.dynamicContent);
+        console.log('getPageContentBySlug: ', page?.dynamicContent);
 
         if (!page) {
             return {

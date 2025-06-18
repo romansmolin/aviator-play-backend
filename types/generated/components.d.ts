@@ -144,6 +144,17 @@ export interface CasinoCasinoType extends Struct.ComponentSchema {
     };
 }
 
+export interface ContentActionButton extends Struct.ComponentSchema {
+    collectionName: 'components_content_action_buttons';
+    info: {
+        displayName: 'ActionButton';
+    };
+    attributes: {
+        link: Schema.Attribute.String;
+        title: Schema.Attribute.String;
+    };
+}
+
 export interface ContentContentSection extends Struct.ComponentSchema {
     collectionName: 'components_content_content_sections';
     info: {
@@ -151,6 +162,11 @@ export interface ContentContentSection extends Struct.ComponentSchema {
         displayName: 'ContentSection';
     };
     attributes: {
+        actionButton: Schema.Attribute.Component<'content.action-button', false>;
+        badge: Schema.Attribute.String &
+            Schema.Attribute.SetMinMaxLength<{
+                maxLength: 30;
+            }>;
         image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
         imageBackgroundColor: Schema.Attribute.JSON &
             Schema.Attribute.CustomField<
@@ -256,6 +272,7 @@ declare module '@strapi/strapi' {
             'card.casino-card': CardCasinoCard;
             'card.promo-card': CardPromoCard;
             'casino.casino-type': CasinoCasinoType;
+            'content.action-button': ContentActionButton;
             'content.content-section': ContentContentSection;
             'faq.faq': FaqFaq;
             'faq.faq-item': FaqFaqItem;

@@ -23,21 +23,30 @@
     },
     "position": {
       "type": "enumeration",
+      "required": true,
       "enum": [
         "left",
         "rigth"
-      ],
-      "required": true
+      ]
     },
     "imageBackgroundColor": {
       "type": "customField",
+      "customField": "plugin::multi-select.multi-select",
       "options": [
         "Pinky Red:#dd3070",
         "Orange:#DD7030",
         "Blue:#3030DD",
         ""
-      ],
-      "customField": "plugin::multi-select.multi-select"
+      ]
+    },
+    "badge": {
+      "type": "string",
+      "maxLength": 30
+    },
+    "actionButton": {
+      "type": "component",
+      "component": "content.action-button",
+      "repeatable": false
     }
   }
 }

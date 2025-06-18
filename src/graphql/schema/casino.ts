@@ -2,7 +2,7 @@ export default `
     type GetCasinoByUUID {
       id: Int
       name: String
-      bonus_title: String
+      bonusTitle: String
       logoUrl: String
       features: [String]
       rating: Int
@@ -15,6 +15,18 @@ export default `
       allowedCurrencies: [String]
       slug: String
       affiliateLink: String
+      gameProviders: [GameProviderEntity]
+      paymentProviders: [PaymentProviderEntity]
+    }
+
+    type GameProviderEntity {
+      providerLogo: String,
+      name: String
+    }
+
+    type PaymentProviderEntity {
+      paymentLogo: String
+      name: String
     }
 
     type GetCasinoByType {
@@ -29,7 +41,7 @@ export default `
     type CasinoItem {
         id: Int
         name: String
-        bonus_title: String
+        bonusTitle: String
         logoUrl: String
         features: [String]
         rating: Int
@@ -41,6 +53,9 @@ export default `
         uuid: String
         slug: String
         affiliateLink: String
+        gameProviders: [GameProviderEntity]
+        paymentProviders: [PaymentProviderEntity]
+
     }
 
     type GetCasinoSeoInfoBySlug {
@@ -83,7 +98,7 @@ export default `
     }
 
     type Promo {
-      bonus_title:  String
+      bonusTitle:  String
       bonus_subtitle: String
       bonus_link: String
       bonus_img: String

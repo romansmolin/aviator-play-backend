@@ -182,6 +182,18 @@
           "localized": false
         }
       }
+    },
+    "gameProviders": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::game-provider.game-provider",
+      "mappedBy": "casinos"
+    },
+    "paymentProviders": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::payment-provider.payment-provider",
+      "inversedBy": "casinos"
     }
   }
 }

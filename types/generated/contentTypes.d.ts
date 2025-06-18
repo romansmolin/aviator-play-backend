@@ -666,6 +666,7 @@ export interface ApiCasinoCasino extends Struct.CollectionTypeSchema {
                     '',
                 ]
             >;
+        gameProviders: Schema.Attribute.Relation<'manyToMany', 'api::game-provider.game-provider'>;
         locale: Schema.Attribute.String;
         localizations: Schema.Attribute.Relation<'oneToMany', 'api::casino.casino'>;
         logo: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios', true> &
@@ -688,6 +689,7 @@ export interface ApiCasinoCasino extends Struct.CollectionTypeSchema {
                     localized: true;
                 };
             }>;
+        paymentProviders: Schema.Attribute.Relation<'manyToMany', 'api::payment-provider.payment-provider'>;
         publishAt: Schema.Attribute.DateTime &
             Schema.Attribute.SetPluginOptions<{
                 i18n: {
@@ -798,6 +800,31 @@ export interface ApiCasinosCategoryCasinosCategory extends Struct.CollectionType
     };
 }
 
+export interface ApiGameProviderGameProvider extends Struct.CollectionTypeSchema {
+    collectionName: 'game_providers';
+    info: {
+        displayName: 'Game Provider';
+        pluralName: 'game-providers';
+        singularName: 'game-provider';
+    };
+    options: {
+        draftAndPublish: true;
+    };
+    attributes: {
+        casinos: Schema.Attribute.Relation<'manyToMany', 'api::casino.casino'>;
+        createdAt: Schema.Attribute.DateTime;
+        createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
+        locale: Schema.Attribute.String & Schema.Attribute.Private;
+        localizations: Schema.Attribute.Relation<'oneToMany', 'api::game-provider.game-provider'> &
+            Schema.Attribute.Private;
+        logo: Schema.Attribute.Media<'images' | 'files'> & Schema.Attribute.Required;
+        name: Schema.Attribute.String & Schema.Attribute.Required & Schema.Attribute.Unique;
+        publishedAt: Schema.Attribute.DateTime;
+        updatedAt: Schema.Attribute.DateTime;
+        updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
+    };
+}
+
 export interface ApiMenuMenu extends Struct.SingleTypeSchema {
     collectionName: 'menus';
     info: {
@@ -868,6 +895,31 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
                     localized: true;
                 };
             }>;
+        updatedAt: Schema.Attribute.DateTime;
+        updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
+    };
+}
+
+export interface ApiPaymentProviderPaymentProvider extends Struct.CollectionTypeSchema {
+    collectionName: 'payment_providers';
+    info: {
+        displayName: 'Payment Provider';
+        pluralName: 'payment-providers';
+        singularName: 'payment-provider';
+    };
+    options: {
+        draftAndPublish: true;
+    };
+    attributes: {
+        casinos: Schema.Attribute.Relation<'manyToMany', 'api::casino.casino'>;
+        createdAt: Schema.Attribute.DateTime;
+        createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
+        locale: Schema.Attribute.String & Schema.Attribute.Private;
+        localizations: Schema.Attribute.Relation<'oneToMany', 'api::payment-provider.payment-provider'> &
+            Schema.Attribute.Private;
+        logo: Schema.Attribute.Media<'images' | 'files'> & Schema.Attribute.Required;
+        name: Schema.Attribute.String & Schema.Attribute.Required & Schema.Attribute.Unique;
+        publishedAt: Schema.Attribute.DateTime;
         updatedAt: Schema.Attribute.DateTime;
         updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
     };
@@ -1330,8 +1382,10 @@ declare module '@strapi/strapi' {
             'api::casino-top-page.casino-top-page': ApiCasinoTopPageCasinoTopPage;
             'api::casino.casino': ApiCasinoCasino;
             'api::casinos-category.casinos-category': ApiCasinosCategoryCasinosCategory;
+            'api::game-provider.game-provider': ApiGameProviderGameProvider;
             'api::menu.menu': ApiMenuMenu;
             'api::page.page': ApiPagePage;
+            'api::payment-provider.payment-provider': ApiPaymentProviderPaymentProvider;
             'api::top.top': ApiTopTop;
             'plugin::content-releases.release': PluginContentReleasesRelease;
             'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;

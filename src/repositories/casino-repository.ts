@@ -10,7 +10,15 @@ export const findCasinoByUuid = async (uuid: string, locale: string) => {
 
 export const findCasinoBySlug = async (slug: string, locale: string) => {
     return await strapi.service('api::casino.casino').find({
-        populate: ['logo', 'faq.fact1', 'mainBonus', 'mainBonus.bonus', 'affiliateLink'],
+        populate: [
+            'logo',
+            'faq.fact1',
+            'mainBonus',
+            'mainBonus.bonus',
+            'affiliateLink',
+            'gameProviders.logo',
+            'paymentProviders.logo',
+        ],
         filters: { slug },
         locale,
     });
