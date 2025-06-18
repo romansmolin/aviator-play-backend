@@ -19,7 +19,7 @@ module.exports = [
             'res.cloudinary.com',
             'aff-site-demo-bucket.s3.eu-north-1.amazonaws.com',
           ],
-          "frame-src": [ "http://localhost:*", "self", "sandbox.embed.apollographql.com" ],
+          "frame-src": [ "self", "sandbox.embed.apollographql.com" ],
           upgradeInsecureRequests: null,
         },
       },
@@ -31,11 +31,27 @@ module.exports = [
       enabled: true,
       headers: '*',
       origin: [
-        'http://localhost:3000',
-        'http://localhost:3001', 
-        'https://usw4owgscwcgoo0k0o0k44k0.kiwi-animatori.com', // Replace with your actual frontend domain
-        // Add more frontend domains as needed
-      ]
+        process.env.FRONTEND_URL || 'https://your-frontend-domain.com',
+        // Add more production domains here
+        'https://www.your-frontend-domain.com',
+        // If using multiple domains or subdomains, list them here
+      ],
+      expose: [
+        'WWW-Authenticate',
+        'Server-Authorization'
+      ],
+      maxAge: 31536000,
+      credentials: true,
+      methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS'],
+      headers: [
+        'Content-Type',
+        'Authorization',
+        'Origin',
+        'Accept',
+        'X-Requested-With',
+        'Access-Control-Request-Method',
+        'Access-Control-Request-Headers'
+      ],
     },
   },
   'strapi::poweredBy',
@@ -48,4 +64,4 @@ module.exports = [
   'strapi::session',
   'strapi::favicon',
   'strapi::public',
-];
+]; 
