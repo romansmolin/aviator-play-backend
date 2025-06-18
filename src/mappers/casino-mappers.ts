@@ -1,4 +1,16 @@
 const casinoMapper = casino => {
+    const gameProviders =
+        casino.gameProviders?.map(provider => ({
+            providerLogo: provider.logo?.url || '',
+            name: provider.name,
+        })) || [];
+
+    const paymentProviders =
+        casino.paymentProviders?.map(paymentProvider => ({
+            paymentLogo: paymentProvider.logo?.url || '',
+            name: paymentProvider.name,
+        })) || [];
+
     const result = {
         id: casino.id,
         name: casino.name,
@@ -13,6 +25,8 @@ const casinoMapper = casino => {
         uuid: casino.uuid,
         slug: casino.slug,
         affiliateLink: casino.affiliateLink,
+        gameProviders,
+        paymentProviders,
     };
 
     return result;

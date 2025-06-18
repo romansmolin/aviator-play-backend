@@ -2,7 +2,17 @@
 
 export const findCasinoByUuid = async (uuid: string, locale: string) => {
     return await strapi.service('api::casino.casino').find({
-        populate: ['logo', 'faq.fact1', 'mainBonus', 'mainBonus.bonus', 'affiliateLink'],
+        populate: [
+            'logo',
+            'faq.fact1',
+            'mainBonus',
+            'mainBonus.bonus',
+            'affiliateLink',
+            'gameProviders',
+            'gameProviders.logo',
+            'paymentProviders',
+            'paymentProviders.logo',
+        ],
         filters: { uuid },
         locale,
     });
@@ -16,7 +26,9 @@ export const findCasinoBySlug = async (slug: string, locale: string) => {
             'mainBonus',
             'mainBonus.bonus',
             'affiliateLink',
+            'gameProviders',
             'gameProviders.logo',
+            'paymentProviders',
             'paymentProviders.logo',
         ],
         filters: { slug },
@@ -30,14 +42,34 @@ export const findCasinoBySlug = async (slug: string, locale: string) => {
 
 export const findCasinosByLocale = async (locale: string) => {
     return await strapi.service('api::casino.casino').find({
-        populate: ['logo', 'faq.fact1', 'mainBonus', 'localizations', 'affiliateLink'],
+        populate: [
+            'logo',
+            'faq.fact1',
+            'mainBonus',
+            'localizations',
+            'affiliateLink',
+            'gameProviders',
+            'gameProviders.logo',
+            'paymentProviders',
+            'paymentProviders.logo',
+        ],
         locale,
     });
 };
 
 export const findCasinosBySlug = async (locale: string) => {
     return await strapi.service('api::casino.casino').find({
-        populate: ['logo', 'faq.fact1', 'mainBonus', 'localizations', 'affiliateLink'],
+        populate: [
+            'logo',
+            'faq.fact1',
+            'mainBonus',
+            'localizations',
+            'affiliateLink',
+            'gameProviders',
+            'gameProviders.logo',
+            'paymentProviders',
+            'paymentProviders.logo',
+        ],
         locale,
     });
 };
@@ -54,6 +86,10 @@ export const findAllCasinosByLocale = async (locale: string) => {
             'mainBonus',
             'localizations',
             'affiliateLink',
+            'gameProviders',
+            'gameProviders.logo',
+            'paymentProviders',
+            'paymentProviders.logo',
         ],
     });
 };
